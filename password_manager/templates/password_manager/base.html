@@ -1,0 +1,84 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+
+  <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+  <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}" />
+
+</head>
+
+<body>
+
+  <!-- #2d2d3a for button to add new account -->
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg" style="background-color: #1c1c24;">
+    <div class="container">
+      <!-- Left elements -->
+      <div class="d-flex">
+        <!-- Brand -->
+        <i class="fa-solid fa-shield-halved fa-2xl me-2" style="color: #4547e2;"></i>
+        <h4 class="text-light">Pass Keeper</h5>
+
+          <!-- Search form -->
+
+      </div>
+      <!-- Left elements -->
+
+      <!-- Center elements -->
+      <ul class="navbar-nav flex-row">
+        <li class="nav-item me-3 me-lg-1 active">
+          <a class="nav-link d-sm-flex align-items-sm-center" href="#">
+
+            <!-- <i class="fa-solid fa-house fa-xl text-light"></i> -->
+            <!-- <i class="fa-brands fa-rust fa-2xl text-light"></i> -->
+            <!-- <strong class="d-none d-sm-block ms-2 text-light me-3">Home</strong> -->
+          </a>
+        </li>
+
+
+
+
+      </ul>
+      <!-- Center elements -->
+
+      <!-- Right elements  user profile-->
+      {% if user.is_authenticated %}
+      <ul class="navbar-nav flex-row">
+        <li class="nav-item me-3 me-lg-1">
+          <a class="nav-link d-sm-flex align-items-sm-center" href="#">
+            <strong class="d-none d-sm-block ms-1 text-light me-2">Hi, {{ user }}</strong>
+            <img src="{% static 'media/anonymous_user.jpeg' %}" class="rounded-circle" height="33"
+              alt="Black and White Portrait of a Man" loading="lazy" />
+
+          </a>
+        </li>
+        <li class="nav-item me-3 me-lg-1">
+          <a class="nav-link" href="{% url 'password_manager:logout' %}">
+            <button type="button" class="btn btn-info btn-rounded">Logout</button>
+          </a>
+        </li>
+      </ul>
+      {% endif %}
+
+
+    </div>
+  </nav>
+  {% block content %}
+  {% endblock %}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+</body>
+
+</html>

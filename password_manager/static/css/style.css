@@ -1,0 +1,52 @@
+body {
+    background-color: #131419;
+}
+
+div.card.text-white {
+    background-color: #1c1c24;
+    box-shadow: #4547e2 0px 5px 45px -10px;
+}
+
+.asteriskField {
+    display: none;
+}
+
+input.textinput.textInput {
+    background: transparent;
+    border: white solid;
+    padding: 8px;
+    color: white;
+}
+
+input.textinput.textInput.form-control:focus {
+    color: white;
+    outline: none !important;
+    border-color: #4446de;
+    box-shadow: 0 0 10px #4446de;
+}
+
+input.emailinput.form-control {
+    background: transparent;
+    border: white solid;
+    padding: 8px;
+    color: white;
+}
+
+input.emailinput.form-control:focus {
+    color: white;
+    outline: none !important;
+    border-color: #4446de;
+    box-shadow: 0 0 10px #4446de;
+}
+
+label.form-label.requiredField {
+    font-size: 25px;
+    color: white;
+}
+
+
+#hint_id_password1,
+#hint_id_password2 {
+    visibility: hidden;
+    font-size: 0 !important;
+}
