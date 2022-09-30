@@ -50,3 +50,71 @@ label.form-label.requiredField {
     visibility: hidden;
     font-size: 0 !important;
 }
+
+button.btn.add-button {
+    background-color: #2d2d3a;
+    color: white;
+    border-radius: 10px;
+}
+
+div.card-header {
+    border: none;
+    color: white;
+}
+
+div.card {
+    background-color: #1c1c24;
+    padding: 20px;
+}
+
+img.card-img-top {
+    border-radius: 20px;
+}
+
+button.btn-outline-primary {
+    border-radius: 10px;
+    width: 100%;
+}
+
+div.card-body {
+    padding-right: 0%;
+    padding-left: 0%;
+}
+
+div.card-header {
+    padding-right: 0%;
+    padding-left: 0%;
+}
+
+button.btn.btn-outline-primary {
+    border-color: #4547e2;
+    color: white;
+    /* background-color: #4547e2; */
+}
+
+button.btn.btn-outline-primary:hover {
+    border-color: #4547e2;
+    color: white;
+    background-color: #4547e2;
+}
+
+div.card-body {
+    padding: 0px;
+}
+
+.profileImage {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: #4446de;
+    font-size: 35px;
+    color: #fff;
+    text-align: center;
+    line-height: 160px;
+}
+
+div.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

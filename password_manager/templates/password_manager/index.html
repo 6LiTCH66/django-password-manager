@@ -1,4 +1,348 @@
 {% extends "password_manager/base.html" %}
 {% block content%}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <p class="h4" style="color: white;">Passwords list</p>
+        <button type="button" class="btn add-button p-3" data-mdb-toggle="modal" data-mdb-target="#exampleModal"
+            data-mdb-whatever="@getbootstrap">
+            <i class="fa-solid fa-plus fa-lg"></i>
+            Add password
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mt-2">
+        <div class="col">
+            <div class="card h-100">
+                <i class="fa-brands fa-instagram fa-10x text-light"></i>
+
+                <div class="card-body">
+                    <p class="card-text text-light text-center">
+
+                    <h5 style="color: white;">Instagram</h5>
+
+                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                    </p>
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <i class="fa-brands fa-youtube fa-10x text-light"></i>
+
+                <div class="card-body">
+                    <p class="card-text text-light text-center">
+
+                    <h5 style="color: white;">YouTube</h5>
+
+                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                    </p>
+
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <i class="fa-brands fa-amazon fa-10x text-light"></i>
+
+                <div class="card-body">
+                    <p class="card-text text-light text-center">
+
+                    <h5 style="color: white;">Amazon</h5>
+
+                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                    </p>
+                    </p>
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <i class="fa-brands fa-whatsapp fa-10x text-light"></i>
+
+                <div class="card-body">
+                    <p class="card-text text-light text-center">
+
+                    <h5 style="color: white;">Whatsapp</h5>
+
+                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                    </p>
+                    </p>
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <i class="fa-brands fa-facebook-f fa-10x text-light"></i>
+
+                <div class="card-body">
+                    <p class="card-text text-light text-center">
+
+                    <h5 style="color: white;">Facebook</h5>
+
+                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                    </p>
+                    </p>
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <i class="fa-brands fa-linkedin fa-10x text-light"></i>
+
+                <div class="card-body">
+                    <p class="card-text text-light text-center">
+
+                    <h5 style="color: white;">Linkedin</h5>
+
+                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                    </p>
+                    </p>
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <i class="fa-brands fa-discord fa-10x text-light"></i>
+
+                <div class="card-body">
+                    <p class="card-text text-light text-center">
+
+                    <h5 style="color: white;">Discord</h5>
+
+                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                    </p>
+                    </p>
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <i class="fa-brands fa-twitter fa-10x text-light"></i>
+
+                <div class="card-body">
+                    <p class="card-text text-light text-center">
+
+                    <h5 style="color: white;">Twitter</h5>
+
+                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                    </p>
+                    </p>
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <i class="fa-brands fa-google fa-10x text-light"></i>
+
+                <!-- <div class="profile-container">
+                    <div class="profileImage">
+                        T
+                    </div>
+                </div> -->
+
+                <div class="card-body">
+                    <p class="card-text text-light text-center">
+
+                    <h5 style="color: white;">Google</h5>
+
+                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                    </p>
+                    </p>
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <!-- <i class="fa-brands fa-google fa-10x text-light"></i> -->
+                <div class="profile-container">
+                    <div class="profileImage">
+                        T
+                    </div>
+                </div>
+
+
+
+                <div class="card-body">
+                    <p class="card-text text-light text-start">
+
+                    <h5 style="color: white;">testapp</h5>
+
+                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                    </p>
+
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="row row-cols-3 g-3">
+        <div class="col">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="col">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card title</h5>
+                        <div class="card-header">
+                            <i class="fa-brands fa-instagram fa-5x"></i>
+                            <h5>Instagram</h5>
+                        </div>
+                        <p class="card-text text-light">
+
+                            Title
+                            <br>
+                            username or login
+                            This is a wider card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+
+                    <div class="col">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">
+                                This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+
+                    <div class="col">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">
+                                This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+
+                    <div class="col">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">
+                                This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+
+                    <div class="col">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">
+                                This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+
+                    <div class="col">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">
+                                This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+</div>
 {% endblock %}
