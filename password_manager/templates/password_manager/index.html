@@ -9,80 +9,79 @@
             Add password
         </button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel" style="color: white;">New
-                            message</h5>
-                        <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal"
-                            aria-label="Close"></button>
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100" id="exampleModalLabel" style="color: white;">
+                            <i class="fa-solid fa-shield-halved fa-2xl me-2" style="color: #4547e2;"></i>
+                            Pass Keeper
+
+
+                        </h4>
+                        <!-- <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal"
+                            aria-label="Close"></button> -->
                     </div>
                     <div class="modal-body">
                         <form>
-                            <!-- Title input -->
-                            <!-- <div class="form-outline mb-4">
-                                <input type="text" id="form1Example1" class="form-control form-control-lg" />
-                                <label class="form-label text-light" for="form1Example1">Title</label>
-                            </div> -->
 
-                            <!-- Login input -->
-                            <!-- <div class="form-outline mb-4">
-                                <input type="text" id="form1Example2" class="form-control form-control-lg" />
-                                <label class="form-label text-light" for="form1Example2">Login</label>
-                            </div> -->
-
-                            <!-- Password input -->
-                            <!-- <div class="form-outline mb-4">
-                                <input type="password" id="form1Example3" class="form-control form-control-lg" />
-                                <label class="form-label text-light" for="form1Example3">Password</label>
-                            </div> -->
-
-                            <!-- Master password input -->
-                            <!-- <div class="form-outline mb-4">
-                                <input type="password" id="form1Example4" class="form-control form-control-lg" />
-                                <label class="form-label text-light" for="form1Example4">Master Password</label>
-                            </div> -->
-
-                            <!-- Website address input -->
-                            <!-- <div class="form-outline mb-4">
-                                <input type="text" id="form1Example5" class="form-control form-control-lg" />
-                                <label class="form-label text-light" for="form1Example5">Website Address</label>
-                            </div> -->
-
-                            <div class="mb-3">
-                                <!-- <label for="title-name" class="col-form-label">Title</label> -->
+                            <!-- <div class="mb-3">
+                                <label for="title-name" class="col-form-label">Title</label>
                                 <input type="text" class="form-control" id="title-name" placeholder="Title" />
-                            </div>
+                            </div> -->
 
-                            <div class="mb-3">
-                                <!-- <label for="login-name" class="col-form-label">Login</label> -->
+                            <!-- <div class="mb-3">
+                                <label for="login-name" class="col-form-label">Login</label>
                                 <input type="text" class="form-control" id="login-name" placeholder="Login" />
-                            </div>
+                            </div> -->
 
-                            <div class="mb-3">
-                                <!-- <label for="password-name" class="col-form-label">Password</label> -->
+                            <!-- <div class="mb-3">
+                                <label for="password-name" class="col-form-label">Password</label>
                                 <input type="password" class="form-control" id="password-name" placeholder="Password" />
-                            </div>
+                            </div> -->
 
-                            <div class="mb-3">
-                                <!-- <label for="master-password-name" class="col-form-label">Master Password</label> -->
+                            <!-- <div class="mb-3">
+                                <label for="master-password-name" class="col-form-label">Master Password</label>
                                 <input type="password" class="form-control" id="master-password-name"
                                     placeholder="Master Password" />
-                            </div>
+                            </div> -->
 
-                            <div class="mb-3">
-                                <!-- <label for="website-name" class="col-form-label">Website Address</label> -->
+                            <!-- <div class="mb-3">
+                                <label for="website-name" class="col-form-label">Website Address</label>
                                 <input type="url" class="form-control" id="website-name"
                                     placeholder="Website Address" />
+                            </div> -->
+
+                            <div class="form__group">
+                                <input type="text" id="title" class="form__field" placeholder="Title">
+                                <label for="title" class="form__label">Title</label>
                             </div>
 
+                            <div class="form__group">
+                                <input type="text" id="login" class="form__field" placeholder="Login">
+                                <label for="login" class="form__label">Login</label>
+                            </div>
 
+                            <div class="form__group">
+                                <input type="password" id="password" class="form__field" placeholder="Password">
+                                <label for="password" class="form__label">Password</label>
+                            </div>
 
+                            <div class="form__group">
+                                <input type="password" id="master-password" class="form__field"
+                                    placeholder="Master password">
+                                <label for="master-password" class="form__label">Master password</label>
+                            </div>
+
+                            <div class="form__group">
+                                <input type="url" id="website-address" class="form__field"
+                                    placeholder="Website Address">
+                                <label for="website-address" class="form__label">Website Address</label>
+                            </div>
 
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Send message</button>
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-outline-primary add p-2">Add password</button>
                     </div>
                 </div>
             </div>
