@@ -12,24 +12,77 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: white;">New
+                            message</h5>
+                        <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form>
+                            <!-- Title input -->
+                            <!-- <div class="form-outline mb-4">
+                                <input type="text" id="form1Example1" class="form-control form-control-lg" />
+                                <label class="form-label text-light" for="form1Example1">Title</label>
+                            </div> -->
+
+                            <!-- Login input -->
+                            <!-- <div class="form-outline mb-4">
+                                <input type="text" id="form1Example2" class="form-control form-control-lg" />
+                                <label class="form-label text-light" for="form1Example2">Login</label>
+                            </div> -->
+
+                            <!-- Password input -->
+                            <!-- <div class="form-outline mb-4">
+                                <input type="password" id="form1Example3" class="form-control form-control-lg" />
+                                <label class="form-label text-light" for="form1Example3">Password</label>
+                            </div> -->
+
+                            <!-- Master password input -->
+                            <!-- <div class="form-outline mb-4">
+                                <input type="password" id="form1Example4" class="form-control form-control-lg" />
+                                <label class="form-label text-light" for="form1Example4">Master Password</label>
+                            </div> -->
+
+                            <!-- Website address input -->
+                            <!-- <div class="form-outline mb-4">
+                                <input type="text" id="form1Example5" class="form-control form-control-lg" />
+                                <label class="form-label text-light" for="form1Example5">Website Address</label>
+                            </div> -->
+
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name" />
+                                <!-- <label for="title-name" class="col-form-label">Title</label> -->
+                                <input type="text" class="form-control" id="title-name" placeholder="Title" />
                             </div>
+
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                                <!-- <label for="login-name" class="col-form-label">Login</label> -->
+                                <input type="text" class="form-control" id="login-name" placeholder="Login" />
                             </div>
+
+                            <div class="mb-3">
+                                <!-- <label for="password-name" class="col-form-label">Password</label> -->
+                                <input type="password" class="form-control" id="password-name" placeholder="Password" />
+                            </div>
+
+                            <div class="mb-3">
+                                <!-- <label for="master-password-name" class="col-form-label">Master Password</label> -->
+                                <input type="password" class="form-control" id="master-password-name"
+                                    placeholder="Master Password" />
+                            </div>
+
+                            <div class="mb-3">
+                                <!-- <label for="website-name" class="col-form-label">Website Address</label> -->
+                                <input type="url" class="form-control" id="website-name"
+                                    placeholder="Website Address" />
+                            </div>
+
+
+
+
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send message</button>
+                        <button type="submit" class="btn btn-primary">Send message</button>
                     </div>
                 </div>
             </div>

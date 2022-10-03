@@ -118,3 +118,38 @@ div.profile-container {
     align-items: center;
     justify-content: center;
 }
+
+div.modal-content {
+    background-color: #1c1c24;
+}
+
+input.form-control {
+    background: transparent;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: white solid;
+    border-radius: 0px;
+    padding: 10px;
+    color: white;
+    outline: none !important;
+    /* margin-bottom: 5px; */
+}
+
+
+input.form-control:focus {
+    background-color: transparent;
+    color: white;
+    outline: none !important;
+    border-color: #4446de;
+    box-shadow: none !important;
+
+}
+
+div.modal-header {
+    border: none !important;
+}
+
+div.modal-footer {
+    border: none !important;
+}
