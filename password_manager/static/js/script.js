@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
             if (element.parentElement) {
 
                 // console.log(element.parentElement.nextSibling.nextSibling.nextSibling);
-                element.parentElement.nextSibling.nextSibling.nextSibling.style.display = "inline"
+                element.parentElement.nextSibling.nextSibling.nextSibling.style.display = "flex"
                 element.parentElement.style.display = "none"
             }
 
