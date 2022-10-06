@@ -15,74 +15,45 @@
                         <h4 class="modal-title w-100" id="exampleModalLabel" style="color: white;">
                             <i class="fa-solid fa-shield-halved fa-2xl me-2" style="color: #4547e2;"></i>
                             Pass Keeper
-
-
                         </h4>
-                        <!-- <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="modal"
-                            aria-label="Close"></button> -->
                     </div>
                     <div class="modal-body">
-                        <form>
-
-                            <!-- <div class="mb-3">
-                                <label for="title-name" class="col-form-label">Title</label>
-                                <input type="text" class="form-control" id="title-name" placeholder="Title" />
-                            </div> -->
-
-                            <!-- <div class="mb-3">
-                                <label for="login-name" class="col-form-label">Login</label>
-                                <input type="text" class="form-control" id="login-name" placeholder="Login" />
-                            </div> -->
-
-                            <!-- <div class="mb-3">
-                                <label for="password-name" class="col-form-label">Password</label>
-                                <input type="password" class="form-control" id="password-name" placeholder="Password" />
-                            </div> -->
-
-                            <!-- <div class="mb-3">
-                                <label for="master-password-name" class="col-form-label">Master Password</label>
-                                <input type="password" class="form-control" id="master-password-name"
-                                    placeholder="Master Password" />
-                            </div> -->
-
-                            <!-- <div class="mb-3">
-                                <label for="website-name" class="col-form-label">Website Address</label>
-                                <input type="url" class="form-control" id="website-name"
-                                    placeholder="Website Address" />
-                            </div> -->
-
+                        <form action="{% url 'password_manager:add' %}" method="post">
+                            {% csrf_token %}
                             <div class="form__group">
-                                <input type="text" id="title" class="form__field" placeholder="Title">
+                                <input type="text" id="title" class="form__field" placeholder="Title" name="title">
                                 <label for="title" class="form__label">Title</label>
                             </div>
 
                             <div class="form__group">
-                                <input type="text" id="login" class="form__field" placeholder="Login">
+                                <input type="text" id="login" class="form__field" placeholder="Login" name="login">
                                 <label for="login" class="form__label">Login</label>
                             </div>
 
                             <div class="form__group">
-                                <input type="password" id="password" class="form__field" placeholder="Password">
+                                <input type="password" id="password" class="form__field" placeholder="Password"
+                                    name="password">
                                 <label for="password" class="form__label">Password</label>
                             </div>
 
                             <div class="form__group">
                                 <input type="password" id="master-password" class="form__field"
-                                    placeholder="Master password">
+                                    placeholder="Master password" name="master_password">
                                 <label for="master-password" class="form__label">Master password</label>
                             </div>
 
                             <div class="form__group">
-                                <input type="url" id="website-address" class="form__field"
-                                    placeholder="Website Address">
+                                <input type="url" id="website-address" class="form__field" placeholder="Website Address"
+                                    name="website_address">
                                 <label for="website-address" class="form__label">Website Address</label>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="submit" class="btn btn-outline-primary add p-2">Add password</button>
                             </div>
 
                         </form>
                     </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="submit" class="btn btn-outline-primary add p-2">Add password</button>
-                    </div>
+
                 </div>
             </div>
         </div>

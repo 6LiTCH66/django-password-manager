@@ -6,7 +6,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Pass Keeper</title>
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- Google Fonts -->
@@ -26,7 +26,6 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg" style="background-color: #1c1c24;">
     <div class="container">
-      <!-- Left elements -->
       <div class="d-flex">
         <!-- Brand -->
         <i class="fa-solid fa-shield-halved fa-2xl me-2" style="color: #4547e2;"></i>
@@ -35,16 +34,11 @@
         <!-- Search form -->
 
       </div>
-      <!-- Left elements -->
 
       <!-- Center elements -->
       <ul class="navbar-nav flex-row">
         <li class="nav-item me-3 me-lg-1 active">
           <a class="nav-link d-sm-flex align-items-sm-center" href="#">
-
-            <!-- <i class="fa-solid fa-house fa-xl text-light"></i> -->
-            <!-- <i class="fa-brands fa-rust fa-2xl text-light"></i> -->
-            <!-- <strong class="d-none d-sm-block ms-2 text-light me-3">Home</strong> -->
           </a>
         </li>
 
@@ -52,9 +46,9 @@
 
 
       </ul>
+
       <!-- Center elements -->
 
-      <!-- Right elements  user profile-->
       {% if user.is_authenticated %}
       <ul class="navbar-nav flex-row">
         <li class="nav-item me-3 me-lg-1">
@@ -66,9 +60,26 @@
           </a>
         </li>
         <li class="nav-item me-3 me-lg-1">
-          <a class="nav-link" href="{% url 'password_manager:logout' %}">
-            <button type="button" class="btn btn-info btn-rounded">Logout</button>
+          <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
+            data-mdb-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-chevron-down fa-lg" id="down-btn"></i>
           </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li style="position:relative">
+
+              <a class="dropdown-item profile-btn" href="#">
+                <i class="fa-solid fa-user fa-lg me-2"></i>
+                My profile
+              </a>
+            </li>
+            <li>
+
+              <a class="dropdown-item logout-btn" href="#">
+                <i class="fa-solid fa-right-from-bracket fa-lg me-2"></i>
+                Logout
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
       {% endif %}

@@ -212,3 +212,42 @@ label,
     padding-bottom: 6px;
     border-bottom: 2px solid white;
 }
+
+svg.svg-inline--fa.fa-chevron-down.fa-lg {
+    color: #3d3d4d;
+    transition: 0.2s;
+}
+
+svg.svg-inline--fa.fa-chevron-down.fa-lg:hover {
+    color: white;
+    /* font-size: 23px; */
+    transition: 0.2s;
+}
+
+a.logout-btn {
+    color: white;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+a.profile-btn {
+    font-size: 15px;
+    color: white;
+}
+
+a.profile-btn:hover {
+    font-size: 15px;
+    color: white;
+    background-color: #1c1c24;
+}
+
+a.logout-btn:hover {
+    color: #DC143C;
+    transition: 0.2s;
+    background-color: #1c1c24;
+}
+
+ul.dropdown-menu.dropdown-menu-end {
+    background-color: #1c1c24;
+
+}

@@ -5,8 +5,9 @@ from . import views
 
 app_name = "password_manager"
 urlpatterns = [
+    path('', views.IndexView.as_view(), name='index'),
+    path("add/", views.AddNewPassword.as_view(), name="add"),
     path("signup/", views.CustomSignupView.as_view(), name='signup'),
     path('login/', views.CustomLoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
-    path('', views.IndexView.as_view(), name='index')
+    path('logout/', LogoutView.as_view(), name='logout')
 ]
