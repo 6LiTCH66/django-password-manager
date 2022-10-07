@@ -1,4 +1,5 @@
 window.addEventListener('load', function () {
+
     var allGs = document.getElementsByTagName('g');
     if (allGs) {
         Array.from(allGs).forEach(element => {
@@ -11,27 +12,54 @@ window.addEventListener('load', function () {
 
         });
     }
+
+    const exampleModal = document.getElementById('exampleModal2');
+    exampleModal.addEventListener('show.mdb.modal', (e) => {
+        // Button that triggered the modal
+        const button = e.relatedTarget;
+        // Extract info from data-mdb-* attributes
+        const password_id = button.getAttribute('data-mdb-whatever'); // getting password id
+
+        exampleModal.querySelector('#password_id').value = password_id
+
+    })
+
+    // if ($('#exampleModal2').hasClass('show')) {
+    //     console.log("open")
+    // }
+    // else {
+    //     console.log("closed")
+    //     $("#user_password").get(0).type = 'password';
+    //     $("#user_password").val("**********");
+    // }
 })
 
-// if (document.querySelector("#down-btn")) {
-//     // console.log(document.querySelector("#down-btn"));
-//     document.addEventListener("click", function (event) {
 
-//         const workContainer = event.target.closest('.svg-inline--fa');
-//         if (workContainer !== null) {
-//             const div = document.querySelector("#down-btn");
-//             if (document.querySelector("#down-btn").classList.contains('fa-chevron-down')) {
+// const modal1 = document.getElementById('exampleModal2');
+// modal1.addEventListener('hidden.bs.modal', function (event) {
+//     console.log("show.bs.modal event 1")
+// });
 
-//                 div.classList.remove('fa-chevron-down');
-//                 div.classList.add("fa-chevron-up")
-//             } else {
-//                 div.classList.remove('fa-chevron-up');
-//                 div.classList.add("fa-chevron-down")
-//             }
-//         }
-//     });
-// }
 
+
+$(document).ready(function () {
+    $("#myForm").submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: "/show/",
+            type: "POST",
+            data: $('#myForm').serialize(),
+            success: function (data) {
+                console.log(data)
+                $("#user_password").get(0).type = 'text';
+                $("#user_password").val(data["key2"]);
+
+            }
+
+
+        });
+    });
+});
 
 
 

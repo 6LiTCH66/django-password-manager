@@ -57,12 +57,77 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100" id="exampleModalLabel" style="color: white;">
+                            <i class="fa-solid fa-shield-halved fa-2xl me-2" style="color: #4547e2;"></i>
+                            Pass Keeper
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="myForm">
+                            {% csrf_token %}
+                            <div class="form__group">
+                                <input type="password" id="user_password" class="form__field" placeholder="Password"
+                                    name="user_password" readonly value="*********">
+                                <label for="user_password" class="form__label">Password</label>
+                            </div>
+
+                            <input type="hidden" id="password_id" name="password_id">
+
+                            <div class="form__group">
+
+                                <input type="password" id="user_master_password" class="form__field"
+                                    placeholder="Master password" name="user_master_password">
+                                <label for="user_master_password" class="form__label">Master password</label>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="submit" class="btn btn-outline-primary add p-2">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mt-2">
+        {% for password in passwords_list %}
         <div class="col">
             <div class="card h-100">
-                <i class="fa-brands fa-instagram fa-10x text-light"></i>
+                <a href="{{ password.website_address }}" class="typeA" target="_blank">
+                    <i class="fa-brands fa-{{ password.icon_name }} fa-10x text-light"></i>
+                    <div class="profile-container" style="display: none;">
+                        <div class="profileImage">
+                            {{ password.title.0 }}
+                        </div>
+                    </div>
+                </a>
+
+                <div class="card-body">
+                    <p class="card-text text-light text-center">
+
+                    <h5 style="color: white;">{{ password.title }}</h5>
+
+                    <h7 style="color: grey;">{{ password.login }}</h7>
+                    </p>
+                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark"
+                        data-mdb-toggle="modal" data-mdb-target="#exampleModal2" data-mdb-whatever={{password.id}}>Show
+                        my
+                        credentials</button>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+        <!-- <div class="col">
+            <div class="card h-100">
+                <i class="fa-brands fa-linux fa-10x text-light"></i>
 
                 <div class="profile-container" style="display: none;">
                     <div class="profileImage">
@@ -82,9 +147,9 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="col">
+        <!-- <div class="col">
             <div class="card h-100">
                 <i class="fa-brands fa-youtube fa-10x text-light"></i>
 
@@ -107,9 +172,9 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="col">
+        <!-- <div class="col">
             <div class="card h-100">
                 <i class="fa-brands fa-amazon fa-10x text-light"></i>
 
@@ -132,9 +197,9 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="col">
+        <!-- <div class="col">
             <div class="card h-100">
                 <i class="fa-brands fa-whatsapp fa-10x text-light"></i>
 
@@ -157,9 +222,9 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="col">
+        <!-- <div class="col">
             <div class="card h-100">
                 <i class="fa-brands fa-facebook-f fa-10x text-light"></i>
 
@@ -282,9 +347,9 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="col">
+        <!-- <div class="col">
             <div class="card h-100">
                 <i class="fa-brands fa-testapp fa-10x text-light"></i>
 
@@ -334,7 +399,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
 </div>

@@ -251,3 +251,10 @@ ul.dropdown-menu.dropdown-menu-end {
     background-color: #1c1c24;
 
 }
+
+a.typeA {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

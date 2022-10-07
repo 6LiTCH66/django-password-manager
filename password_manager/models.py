@@ -9,6 +9,7 @@ class PasswordManager(models.Model):
     website_address = models.URLField()
     encrypted_password = models.JSONField()
     login = models.CharField(max_length=150)
+    icon_name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.title
