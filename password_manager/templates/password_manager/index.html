@@ -11,12 +11,14 @@
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
+
                     <div class="modal-header text-center">
                         <h4 class="modal-title w-100" id="exampleModalLabel" style="color: white;">
                             <i class="fa-solid fa-shield-halved fa-2xl me-2" style="color: #4547e2;"></i>
                             Pass Keeper
                         </h4>
                     </div>
+
                     <div class="modal-body">
                         <form action="{% url 'password_manager:add' %}" method="post">
                             {% csrf_token %}
@@ -63,13 +65,26 @@
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <h4 class="modal-title w-100" id="exampleModalLabel" style="color: white;">
-                            <i class="fa-solid fa-shield-halved fa-2xl me-2" style="color: #4547e2;"></i>
-                            Pass Keeper
+
+
                         </h4>
                     </div>
                     <div class="modal-body">
                         <form id="myForm">
                             {% csrf_token %}
+
+                            <div class="form__group">
+                                <input type="text" id="user_login" class="form__field" placeholder="Login"
+                                    name="user_login" readonly>
+                                <label for="user_login" class="form__label">Login</label>
+                            </div>
+
+                            <!-- <div class="form__group">
+                                <input type="text" id="user_title" class="form__field" placeholder="Title"
+                                    name="user_title" readonly>
+                                <label for="user_title" class="form__label">Title</label>
+                            </div> -->
+
                             <div class="form__group">
                                 <input type="password" id="user_password" class="form__field" placeholder="Password"
                                     name="user_password" readonly value="*********">
@@ -100,6 +115,7 @@
             <div class="card h-100">
                 <a href="{{ password.website_address }}" class="typeA" target="_blank">
                     <i class="fa-brands fa-{{ password.icon_name }} fa-10x text-light"></i>
+
                     <div class="profile-container" style="display: none;">
                         <div class="profileImage">
                             {{ password.title.0 }}
@@ -115,7 +131,9 @@
                     <h7 style="color: grey;">{{ password.login }}</h7>
                     </p>
                     <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark"
-                        data-mdb-toggle="modal" data-mdb-target="#exampleModal2" data-mdb-whatever={{password.id}}>Show
+                        data-mdb-toggle="modal" data-mdb-target="#exampleModal2" data-mdb-pass_id={{password.id}}
+                        data-mdb-pass_login="{{password.login}}" data-mdb-pass_title="{{password.title}}"
+                        data-mdb-pass_icon="{{password.icon_name}}">Show
                         my
                         credentials</button>
 
@@ -123,283 +141,6 @@
             </div>
         </div>
         {% endfor %}
-
-
-        <!-- <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-linux fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class="profileImage">
-                        T
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text text-light text-center">
-
-                    <h5 style="color: white;">Instagram</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-youtube fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class="profileImage">
-                        T
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text text-light text-center">
-
-                    <h5 style="color: white;">YouTube</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-amazon fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class="profileImage">
-                        T
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text text-light text-center">
-
-                    <h5 style="color: white;">Amazon</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-                    </p>
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-whatsapp fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class="profileImage">
-                        T
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text text-light text-center">
-
-                    <h5 style="color: white;">Whatsapp</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-                    </p>
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-facebook-f fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class="profileImage">
-                        T
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text text-light text-center">
-
-                    <h5 style="color: white;">Facebook</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-                    </p>
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-linkedin fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class="profileImage">
-                        T
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text text-light text-center">
-
-                    <h5 style="color: white;">Linkedin</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-                    </p>
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-discord fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class="profileImage">
-                        T
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text text-light text-center">
-
-                    <h5 style="color: white;">Discord</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-                    </p>
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-twitter fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class="profileImage">
-                        T
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text text-light text-center">
-
-                    <h5 style="color: white;">Twitter</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-                    </p>
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-google fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class=" profileImage">
-                        G
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text text-light text-center">
-
-                    <h5 style="color: white;">Google</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-                    </p>
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-testapp fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class="profileImage">
-                        T
-                    </div>
-                </div>
-
-
-                <div class="card-body">
-                    <p class="card-text text-light text-start">
-
-                    <h5 style="color: white;">testapp</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100">
-                <i class="fa-brands fa-google fa-10x text-light"></i>
-
-                <div class="profile-container" style="display: none;">
-                    <div class="profileImage">
-                        G
-                    </div>
-                </div>
-
-
-                <div class="card-body">
-                    <p class="card-text text-light text-start">
-
-                    <h5 style="color: white;">Google</h5>
-
-                    <h7 style="color: grey;">ilja200303@gmail.com</h7>
-                    </p>
-
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark">Show my
-                        credentials</button>
-
-                </div>
-            </div>
-        </div> -->
     </div>
 
 </div>

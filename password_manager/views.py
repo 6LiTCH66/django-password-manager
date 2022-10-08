@@ -115,13 +115,15 @@ class ShowUserPassword(generic.View):
                 encrypted_dict["encrypted_password"])
 
             user_master_password = request.POST.get("user_master_password")
+
             decrypted_password = decrypt(
                 encrypted_dict, user_master_password).decode('utf-8')
             print(decrypted_password)
 
             response = {
-                'key2': decrypted_password,
+                'password': decrypted_password,
             }
+
             return JsonResponse(response)
 
         return HttpResponseRedirect('/')

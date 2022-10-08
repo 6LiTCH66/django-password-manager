@@ -258,3 +258,27 @@ a.typeA {
     justify-content: center;
     align-items: center;
 }
+
+.iconImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #4446de;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+}
+
+div.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h4#exampleModalLabel {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

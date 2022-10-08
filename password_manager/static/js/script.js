@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
         Array.from(allGs).forEach(element => {
             if (element.parentElement) {
 
-                // console.log(element.parentElement.nextSibling.nextSibling.nextSibling);
+                // console.log(element.parentElement);
                 element.parentElement.nextSibling.nextSibling.nextSibling.style.display = "flex"
                 element.parentElement.style.display = "none"
             }
@@ -15,30 +15,61 @@ window.addEventListener('load', function () {
 
     const exampleModal = document.getElementById('exampleModal2');
     exampleModal.addEventListener('show.mdb.modal', (e) => {
+
         // Button that triggered the modal
         const button = e.relatedTarget;
-        // Extract info from data-mdb-* attributes
-        const password_id = button.getAttribute('data-mdb-whatever'); // getting password id
 
-        exampleModal.querySelector('#password_id').value = password_id
+        // Extract info from data-mdb-* attributes
+        const password_id = button.getAttribute('data-mdb-pass_id'); // getting password id
+
+        const password_login = button.getAttribute('data-mdb-pass_login'); // getting password login
+        const password_title = button.getAttribute('data-mdb-pass_title'); // getting password title
+        const password_icon = button.getAttribute('data-mdb-pass_icon'); // getting password icon
+
+        exampleModal.querySelector("#user_login").value = password_login // setting login to login input
+
+        exampleModal.querySelector("#exampleModalLabel").textContent = password_title
+
+        exampleModal.querySelector("#exampleModalLabel")
+            .insertAdjacentHTML('afterbegin',
+                `<div class="icon-container me-2" style="display: none;">
+            <div class="iconImage">
+                ${password_title.charAt(0)}
+            </div>
+        </div>`
+            )
+        exampleModal.querySelector("#exampleModalLabel")
+            .insertAdjacentHTML('afterbegin', `<i class="fa-brands fa-${password_icon} fa-2xl text-light me-2" style="color: #4547e2;"></i>`)
+
+
+
+        $('#exampleModalLabel').ready(function () {
+
+            var allGs_modal = exampleModal.getElementsByTagName('g');
+
+            if (allGs_modal) {
+                Array.from(allGs_modal).forEach(element => {
+                    if (element.parentElement) {
+
+                        // console.log(element.parentElement.nextSibling.nextSibling);
+                        element.parentElement.nextSibling.nextSibling.style.display = "flex"
+                        element.parentElement.style.display = "none"
+                    }
+
+                });
+            }
+        });
+
+
+        exampleModal.querySelector('#password_id').value = password_id // setting hidden input to password's id
+
+        exampleModal.querySelector('#user_password').value = "*********" // if modal form is opend clear 'Password' input
+        exampleModal.querySelector('#user_password').type = 'password' // and set password type back
+        exampleModal.querySelector('#user_master_password').value = "" // clear Master password input from previous password
 
     })
 
-    // if ($('#exampleModal2').hasClass('show')) {
-    //     console.log("open")
-    // }
-    // else {
-    //     console.log("closed")
-    //     $("#user_password").get(0).type = 'password';
-    //     $("#user_password").val("**********");
-    // }
 })
-
-
-// const modal1 = document.getElementById('exampleModal2');
-// modal1.addEventListener('hidden.bs.modal', function (event) {
-//     console.log("show.bs.modal event 1")
-// });
 
 
 
@@ -50,11 +81,17 @@ $(document).ready(function () {
             type: "POST",
             data: $('#myForm').serialize(),
             success: function (data) {
-                console.log(data)
+                // console.log(data)
                 $("#user_password").get(0).type = 'text';
-                $("#user_password").val(data["key2"]);
+                $("#user_password").val(data["password"]);
+                $("#user_master_password").val("");
 
+            },
+            error: function (data) {
+                //user_master_password
+                $("#user_master_password").val("");
             }
+
 
 
         });
