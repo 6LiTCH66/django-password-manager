@@ -98,8 +98,11 @@ def decrypt(encrypted_dict, user_master_password):
 def get_domain_name(url):
     domain = urlparse(url).netloc.split(".")
 
-    if len(domain) >= 2:
+    if len(domain) >= 3:
         domain = domain[1]
+    else:
+        domain = domain[0]
+
     return domain
 
 
@@ -109,8 +112,10 @@ class ShowUserPassword(generic.View):
         form = ShowPasswordForm(request.POST)
         if form.is_valid():
             password_id = request.POST.get("password_id")
+
             encrypted_dict = PasswordManager.objects.filter(
                 user=request.user, pk=password_id).values("encrypted_password")[0]
+
             encrypted_dict = json.loads(
                 encrypted_dict["encrypted_password"])
 
@@ -135,7 +140,7 @@ class AddNewPassword(generic.View):
     def post(self, request):
         form = AddPasswordForm(request.POST)
         if form.is_valid():
-            # print(get_domain_name(request.POST.get("website_address")))
+            print(get_domain_name(request.POST.get("website_address")))
 
             password_object = form.save(commit=False)
             password_object.user = request.user

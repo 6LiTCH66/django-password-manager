@@ -14,6 +14,7 @@ window.addEventListener('load', function () {
     }
 
     const exampleModal = document.getElementById('exampleModal2');
+
     exampleModal.addEventListener('show.mdb.modal', (e) => {
 
         // Button that triggered the modal
@@ -23,12 +24,28 @@ window.addEventListener('load', function () {
         const password_id = button.getAttribute('data-mdb-pass_id'); // getting password id
 
         const password_login = button.getAttribute('data-mdb-pass_login'); // getting password login
-        const password_title = button.getAttribute('data-mdb-pass_title'); // getting password title
+        let password_title = button.getAttribute('data-mdb-pass_title'); // getting password title
         const password_icon = button.getAttribute('data-mdb-pass_icon'); // getting password icon
+        const password_website = button.getAttribute('data-mdb-website'); // getting password website
 
-        exampleModal.querySelector("#user_login").value = password_login // setting login to login input
+        users_login = exampleModal.querySelectorAll('#user_login')
 
-        exampleModal.querySelector("#exampleModalLabel").textContent = password_title
+        users_login.forEach(
+            function (login) {
+                login.value = password_login
+            }
+        )
+
+        // exampleModal.querySelector("#user_login").value = password_login // setting login to login input
+        exampleModal.querySelector("#user_title").value = password_title
+        exampleModal.querySelector("#user_website").value = password_website
+
+
+        if (password_title.length > 18) {
+            password_title = password_title.substring(0, 18) + "..."
+        }
+
+        exampleModal.querySelector("#exampleModalLabel").textContent = password_title.substring(0, 21)
 
         exampleModal.querySelector("#exampleModalLabel")
             .insertAdjacentHTML('afterbegin',
@@ -38,28 +55,31 @@ window.addEventListener('load', function () {
             </div>
         </div>`
             )
+
         exampleModal.querySelector("#exampleModalLabel")
             .insertAdjacentHTML('afterbegin', `<i class="fa-brands fa-${password_icon} fa-2xl text-light me-2" style="color: #4547e2;"></i>`)
 
 
 
-        $('#exampleModalLabel').ready(function () {
 
-            var allGs_modal = exampleModal.getElementsByTagName('g');
+        setTimeout(() => {
+            $('#exampleModalLabel').ready(function () {
 
-            if (allGs_modal) {
-                Array.from(allGs_modal).forEach(element => {
-                    if (element.parentElement) {
+                var allGs_modal = exampleModal.getElementsByTagName('g');
 
-                        // console.log(element.parentElement.nextSibling.nextSibling);
-                        element.parentElement.nextSibling.nextSibling.style.display = "flex"
-                        element.parentElement.style.display = "none"
-                    }
+                if (allGs_modal) {
+                    Array.from(allGs_modal).forEach(element => {
+                        if (element.parentElement) {
 
-                });
-            }
-        });
+                            // console.log(element.parentElement.nextSibling.nextSibling);
+                            element.parentElement.nextSibling.nextSibling.style.display = "flex"
+                            element.parentElement.style.display = "none"
+                        }
 
+                    });
+                }
+            });
+        }, 1000)
 
         exampleModal.querySelector('#password_id').value = password_id // setting hidden input to password's id
 

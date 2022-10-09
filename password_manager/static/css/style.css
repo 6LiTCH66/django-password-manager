@@ -282,3 +282,21 @@ h4#exampleModalLabel {
     justify-content: center;
     align-items: center;
 }
+
+button.btn.btn-outline-primary.update {
+    border-radius: 10px;
+}
+
+button.btn.btn-outline-primary.update:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+button.btn.btn-outline-primary.delete {
+    border-radius: 10px;
+}
+
+button.btn.btn-outline-primary.delete:hover {
+    background-color: #DC4C64;
+    border-color: #DC4C64;
+}

@@ -66,24 +66,121 @@
                     <div class="modal-header text-center">
                         <h4 class="modal-title w-100" id="exampleModalLabel" style="color: white;">
 
-
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <form id="myForm">
-                            {% csrf_token %}
+                        <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login"
+                                    role="tab" aria-controls="pills-login" aria-selected="true">Password</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register"
+                                    role="tab" aria-controls="pills-register" aria-selected="false">Update</a>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register"
+                                    role="tab" aria-controls="pills-register" aria-selected="false">Delete</a>
+                            </li>
+                        </ul>
+
+
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="pills-login" role="tabpanel"
+                                aria-labelledby="tab-login">
+
+                                <form id="myForm">
+                                    {% csrf_token %}
+                                    <div class="form__group">
+                                        <input type="text" id="user_login" class="form__field" placeholder="Login"
+                                            name="user_login" readonly>
+                                        <label for="user_login" class="form__label">Login</label>
+                                    </div>
+
+                                    <div class="form__group">
+                                        <input type="password" id="user_password" class="form__field"
+                                            placeholder="Password" name="user_password" readonly value="*********">
+                                        <label for="user_password" class="form__label">Password</label>
+                                    </div>
+
+                                    <input type="hidden" id="password_id" name="password_id">
+
+                                    <div class="form__group">
+
+                                        <input type="password" id="user_master_password" class="form__field"
+                                            placeholder="Master password" name="user_master_password">
+                                        <label for="user_master_password" class="form__label">Master
+                                            password</label>
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="submit" class="btn btn-outline-primary add p-2">Show
+                                            password</button>
+                                    </div>
+                                </form>
+
+
+                            </div>
+
+                            <div class="tab-pane fade" id="pills-register" role="tabpanel"
+                                aria-labelledby="tab-register">
+                                <form id="myForm">
+                                    {% csrf_token %}
+                                    <div class="form__group">
+                                        <input type="text" id="user_title" class="form__field" placeholder="Title"
+                                            name="user_title">
+                                        <label for="user_title" class="form__label">Title</label>
+                                    </div>
+
+                                    <div class="form__group">
+                                        <input type="text" id="user_login" class="form__field" placeholder="Login"
+                                            name="user_login">
+                                        <label for="user_login" class="form__label">Login</label>
+                                    </div>
+
+                                    <div class="form__group">
+                                        <input type="password" id="user_password" class="form__field"
+                                            placeholder="Password" name="user_password" readonly value="*********">
+                                        <label for="user_password" class="form__label">Password</label>
+                                    </div>
+
+                                    <input type="hidden" id="password_id" name="password_id">
+
+                                    <div class="form__group">
+
+                                        <input type="password" id="user_master_password" class="form__field"
+                                            placeholder="Master password" name="user_master_password">
+                                        <label for="user_master_password" class="form__label">Master password</label>
+                                    </div>
+
+
+                                    <div class="form__group">
+                                        <input type="text" id="user_website" class="form__field"
+                                            placeholder="Website Address" name="user_website" readonly>
+                                        <label for="user_website" class="form__label">Website Address</label>
+                                    </div>
+
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="submit" class="btn btn-outline-primary update p-2">Update</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+
+
+                        <!-- <div class="form__group">
+                                <input type="text" id="user_title" class="form__field" placeholder="Title"
+                                    name="user_title" readonly>
+                                <label for="user_title" class="form__label">Title</label>
+                            </div>
 
                             <div class="form__group">
                                 <input type="text" id="user_login" class="form__field" placeholder="Login"
                                     name="user_login" readonly>
                                 <label for="user_login" class="form__label">Login</label>
                             </div>
-
-                            <!-- <div class="form__group">
-                                <input type="text" id="user_title" class="form__field" placeholder="Title"
-                                    name="user_title" readonly>
-                                <label for="user_title" class="form__label">Title</label>
-                            </div> -->
 
                             <div class="form__group">
                                 <input type="password" id="user_password" class="form__field" placeholder="Password"
@@ -99,10 +196,21 @@
                                     placeholder="Master password" name="user_master_password">
                                 <label for="user_master_password" class="form__label">Master password</label>
                             </div>
-                            <div class="modal-footer justify-content-center">
-                                <button type="submit" class="btn btn-outline-primary add p-2">Submit</button>
-                            </div>
-                        </form>
+
+
+                            <div class="form__group">
+                                <input type="text" id="user_website" class="form__field" placeholder="Website Address"
+                                    name="user_website" readonly>
+                                <label for="user_website" class="form__label">Website Address</label>
+                            </div> -->
+
+                        <!-- <div class="modal-footer justify-content-center">
+                            <button type="submit" class="btn btn-outline-primary add p-2">Show password</button>
+                            <button type="submit" class="btn btn-outline-primary update p-2">Update</button>
+                            <button type="submit" class="btn btn-outline-primary delete p-2">Delete</button>
+                        </div> -->
+
+                        <!-- </form> -->
                     </div>
                 </div>
             </div>
@@ -126,16 +234,16 @@
                 <div class="card-body">
                     <p class="card-text text-light text-center">
 
-                    <h5 style="color: white;">{{ password.title }}</h5>
+                    <h5 style="color: white;">{{ password.title|truncatechars:16 }}</h5>
 
-                    <h7 style="color: grey;">{{ password.login }}</h7>
+                    <h7 style="color: grey;">{{ password.login|truncatechars:22 }}</h7>
                     </p>
-                    <button type="button" class="btn btn-outline-primary p-2" data-mdb-ripple-color="dark"
-                        data-mdb-toggle="modal" data-mdb-target="#exampleModal2" data-mdb-pass_id={{password.id}}
-                        data-mdb-pass_login="{{password.login}}" data-mdb-pass_title="{{password.title}}"
-                        data-mdb-pass_icon="{{password.icon_name}}">Show
-                        my
-                        credentials</button>
+                    <button type="button" id="get_password_btn" class="btn btn-outline-primary p-2"
+                        data-mdb-ripple-color="dark" data-mdb-toggle="modal" data-mdb-target="#exampleModal2"
+                        data-mdb-pass_id={{password.id}} data-mdb-pass_login="{{password.login}}"
+                        data-mdb-pass_title="{{password.title}}" data-mdb-pass_icon="{{password.icon_name}}"
+                        data-mdb-website="{{password.website_address}}">Manage
+                        password</button>
 
                 </div>
             </div>
