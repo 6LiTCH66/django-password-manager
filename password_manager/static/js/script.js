@@ -87,6 +87,11 @@ window.addEventListener('load', function () {
         exampleModal.querySelector('#user_password').type = 'password' // and set password type back
         exampleModal.querySelector('#user_master_password').value = "" // clear Master password input from previous password
 
+        document.querySelector("#yes-btn").href = password_id + "/delete" // setting url for current password to delete
+        document.querySelector("#myForm1").action = password_id + "/update/" // setting action for form to update password
+
+
+
     })
 
 })
@@ -116,6 +121,15 @@ $(document).ready(function () {
 
         });
     });
+
+    // $.ajax({
+    //     url: "/delete/",
+    //     type: "GET",
+    //     data: $('#myForm1').serialize(),
+    //     success: function (data) {
+    //         console.log(data)
+    //     },
+    // });
 });
 
 

@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import TemplateView, ListView
 from .forms import UserSignupForm, AddPasswordForm, ShowPasswordForm
 from django.contrib.auth import login
@@ -95,6 +95,15 @@ def decrypt(encrypted_dict, user_master_password):
     return decrypted
 
 
+def verify_master_password(encrypted_dict, master_password):
+    try:
+        decrypt(encrypted_dict, master_password)
+        return True
+    except:
+        return False
+
+
+# нужно сделать список для исключений типа stackoverflow => stack-overflow
 def get_domain_name(url):
     domain = urlparse(url).netloc.split(".")
 
@@ -121,15 +130,23 @@ class ShowUserPassword(generic.View):
 
             user_master_password = request.POST.get("user_master_password")
 
-            decrypted_password = decrypt(
-                encrypted_dict, user_master_password).decode('utf-8')
-            print(decrypted_password)
+            is_master_password_valid = verify_master_password(
+                encrypted_dict, user_master_password)
 
-            response = {
-                'password': decrypted_password,
-            }
+            if is_master_password_valid:
+                decrypted_password = decrypt(
+                    encrypted_dict, user_master_password).decode('utf-8')
+                print(decrypted_password)
 
-            return JsonResponse(response)
+                response = {
+                    'password': decrypted_password,
+                }
+
+                return JsonResponse(response)
+            else:
+                # return error message
+                print("Password is not valid")
+                pass
 
         return HttpResponseRedirect('/')
 
@@ -159,3 +176,53 @@ class AddNewPassword(generic.View):
             password_object.save()
 
         return redirect('password_manager:index')
+
+
+class DeletePassword(generic.View):
+
+    def get(self, request, password_id):
+        password = get_object_or_404(PasswordManager, pk=password_id)
+        password.delete()
+        return redirect("password_manager:index")
+
+
+class UpdatePassword(generic.View):
+
+    def post(self, request, password_id):
+        password = get_object_or_404(PasswordManager, pk=password_id)
+
+        encrypted_password = password.encrypted_password
+        user_title = request.POST["user_title"]
+        user_login = request.POST["user_login"]
+        user_password = request.POST["user_password"]
+        user_master_password = request.POST["user_master_password"]
+        user_website = request.POST["user_website"]
+        user_confirm_password = request.POST["user_confirm_password"]
+        password_icon = get_domain_name(user_website)
+
+        encrypted_password = json.loads(
+            encrypted_password)
+        if verify_master_password(encrypted_password, user_confirm_password):
+
+            if user_password and user_master_password:
+                # нужно сделать проверку через decrypt потом
+                new_password = encrypt(user_master_password, user_password)
+                password.encrypted_password = new_password
+                password.login = user_login
+                password.title = user_title
+                password.website_address = user_website
+                password.icon_name = password_icon
+                password.save()
+            else:
+                password.login = user_login
+                password.title = user_title
+                password.website_address = user_website
+                password.icon_name = password_icon
+                password.save()
+
+        else:
+            # return error message
+            print("Master password is not verified!")
+            # return HttpResponseRedirect('/net')
+
+        return redirect("password_manager:index")

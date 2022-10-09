@@ -157,6 +157,7 @@ div.modal-footer {
 
 button.btn.btn-outline-primary.add {
     border-radius: 10px;
+    padding: 10px;
 }
 
 button.btn.btn-outline-primary.add:hover {
@@ -285,6 +286,7 @@ h4#exampleModalLabel {
 
 button.btn.btn-outline-primary.update {
     border-radius: 10px;
+    padding: 10px;
 }
 
 button.btn.btn-outline-primary.update:hover {
@@ -299,4 +301,88 @@ button.btn.btn-outline-primary.delete {
 button.btn.btn-outline-primary.delete:hover {
     background-color: #DC4C64;
     border-color: #DC4C64;
+}
+
+a.nav-link#tab-update {
+    background-color: #4446de;
+    color: white;
+    border: 2px solid #4446de;
+    border-radius: 10px;
+}
+
+a.nav-link#tab-update:hover {
+    background-color: transparent;
+}
+
+a.nav-link#tab-password {
+    background-color: #4446de;
+    color: white;
+    border: 2px solid #4446de;
+    border-radius: 10px;
+}
+
+a.nav-link#tab-password:hover {
+    background-color: transparent;
+}
+
+/* a.nav-link#tab-delete {
+    background-color: #4446de;
+    color: white;
+    border: 2px solid #4446de;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+a.nav-link#tab-delete:hover {
+    background-color: #DC4C64;
+    border-color: #DC4C64;
+
+} */
+
+a.nav-link#yes-btn {
+    background-color: #4446de;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+
+}
+
+a.nav-link#yes-btn:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+
+}
+
+a.nav-link#no-btn {
+    background-color: #4446de;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+
+}
+
+a.nav-link#no-btn:hover {
+    background-color: #DC4C64;
+    border-color: #DC4C64;
+
+}
+
+
+
+button.btn.btn-primary.delete-btn {
+    background-color: #4446de;
+    box-shadow: none;
+    width: 100%;
+    height: 49px;
+    border-radius: 10px;
+    margin: 8px;
+
+}
+
+button.btn.btn-primary.delete-btn:hover {
+    background-color: #DC4C64;
+    border-color: #DC4C64;
+
 }
