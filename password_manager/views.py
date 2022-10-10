@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, HttpResponseServerError, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import TemplateView, ListView
 from .forms import UserSignupForm, AddPasswordForm, ShowPasswordForm
@@ -16,6 +16,8 @@ import json
 from urllib.parse import urlparse
 
 from .models import PasswordManager
+
+from django.contrib import messages
 
 
 class IndexView(LoginRequiredMixin, ListView):
@@ -132,7 +134,6 @@ class ShowUserPassword(generic.View):
 
             is_master_password_valid = verify_master_password(
                 encrypted_dict, user_master_password)
-
             if is_master_password_valid:
                 decrypted_password = decrypt(
                     encrypted_dict, user_master_password).decode('utf-8')
@@ -143,10 +144,10 @@ class ShowUserPassword(generic.View):
                 }
 
                 return JsonResponse(response)
+
             else:
-                # return error message
-                print("Password is not valid")
-                pass
+
+                return HttpResponseServerError("Master password is incorrect")
 
         return HttpResponseRedirect('/')
 
@@ -202,6 +203,7 @@ class UpdatePassword(generic.View):
 
         encrypted_password = json.loads(
             encrypted_password)
+
         if verify_master_password(encrypted_password, user_confirm_password):
 
             if user_password and user_master_password:
@@ -223,6 +225,6 @@ class UpdatePassword(generic.View):
         else:
             # return error message
             print("Master password is not verified!")
-            # return HttpResponseRedirect('/net')
-
+            messages.error(self.request, "Master password is not verified!")
+            print(messages)
         return redirect("password_manager:index")

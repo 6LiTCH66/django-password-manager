@@ -386,3 +386,7 @@ button.btn.btn-primary.delete-btn:hover {
     border-color: #DC4C64;
 
 }
+
+strong.error-message {
+    font-size: 18px;
+}

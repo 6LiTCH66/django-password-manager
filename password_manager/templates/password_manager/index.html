@@ -1,5 +1,6 @@
 {% extends "password_manager/base.html" %}
 {% block content%}
+
 <div class="container mt-5">
     <div class="d-flex justify-content-between">
         <p class="h4" style="color: white;">Passwords list</p>
@@ -47,30 +48,32 @@
                         <form action="{% url 'password_manager:add' %}" method="post">
                             {% csrf_token %}
                             <div class="form__group">
-                                <input type="text" id="title" class="form__field" placeholder="Title" name="title">
+                                <input type="text" id="title" class="form__field" placeholder="Title" name="title"
+                                    required>
                                 <label for="title" class="form__label">Title</label>
                             </div>
 
                             <div class="form__group">
-                                <input type="text" id="login" class="form__field" placeholder="Login" name="login">
+                                <input type="text" id="login" class="form__field" placeholder="Login" name="login"
+                                    required>
                                 <label for="login" class="form__label">Login</label>
                             </div>
 
                             <div class="form__group">
                                 <input type="password" id="password" class="form__field" placeholder="Password"
-                                    name="password">
+                                    name="password" required>
                                 <label for="password" class="form__label">Password</label>
                             </div>
 
                             <div class="form__group">
                                 <input type="password" id="master-password" class="form__field"
-                                    placeholder="Master password" name="master_password">
+                                    placeholder="Master password" name="master_password" required>
                                 <label for="master-password" class="form__label">Master password</label>
                             </div>
 
                             <div class="form__group">
                                 <input type="url" id="website-address" class="form__field" placeholder="Website Address"
-                                    name="website_address">
+                                    name="website_address" required>
                                 <label for="website-address" class="form__label">Website Address</label>
                             </div>
                             <div class="modal-footer justify-content-center">
@@ -91,7 +94,21 @@
                         <h4 class="modal-title w-100" id="exampleModalLabel" style="color: white;">
 
                         </h4>
+
                     </div>
+                    <div class="error-message-conteiner text-center">
+                        {% if messages %}
+                        <div>
+                            {% for message in messages %}
+                            <strong class="error-message"
+                                style="color: #DC4C64; visibility:hidden;">{{message}}</strong>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <!-- <strong class="error-message" style="color: #DC4C64; visibility:hidden;">err</strong> -->
+
+                    </div>
+
                     <div class="modal-body">
                         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
                             <li class="nav-item" role="presentation">
