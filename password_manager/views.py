@@ -1,3 +1,4 @@
+from xml import dom
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, HttpResponseServerError, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import TemplateView, ListView
@@ -105,14 +106,46 @@ def verify_master_password(encrypted_dict, master_password):
         return False
 
 
+exceptional_icons = {"stackoverflow": "stack-overflow",
+                     "mastercard": "cc-mastercard",
+                     "steamcommunity": "steam",
+                     "stackexchange": "stack-exchange",
+                     "visa": "cc-visa",
+                     "mdbootstrap": "mdb",
+                     "getbootstrap": "bootstrap",
+                     "ok": "odnoklassniki",
+                     "paypal": "cc-paypal",
+                     "jcb": "cc-jcb", "discover": "cc-discover",
+                     "americanexpress": "cc-amex",
+                     "stripe": "cc-stripe", tuple(["pay", "amazon"]): "cc-amazon-pay"}
+
 # нужно сделать список для исключений типа stackoverflow => stack-overflow
+
+
 def get_domain_name(url):
     domain = urlparse(url).netloc.split(".")
 
-    if len(domain) >= 3:
-        domain = domain[1]
-    else:
+    if exceptional_icons.get(tuple(domain)[0:2]) is not None:
+        domain = exceptional_icons.get(tuple(domain)[0:2])
+
+    elif exceptional_icons.get(tuple(domain)[1]) is not None:
+        domain = exceptional_icons.get(tuple(domain)[1])
+
+    elif len(domain) <= 2:
         domain = domain[0]
+
+    else:
+        domain = domain[1]
+
+    # if len(domain) >= 3:
+    #     if exceptional_icons.get(tuple(domain)[0:2]) is not None:
+    #         domain = exceptional_icons.get(tuple(domain)[0:2])
+    #     elif exceptional_icons.get(domain) is not None:
+    #         domain = exceptional_icons.get(domain)
+    #     else:
+    #         domain = domain[1]
+    # else:
+    #     domain = domain[0]
 
     return domain
 
@@ -150,35 +183,6 @@ class ShowUserPassword(generic.View):
                 return HttpResponseServerError("Master password is incorrect")
 
         return HttpResponseRedirect('/')
-
-
-def add_new_password(request):
-    if request.method == "POST":
-        form = AddPasswordForm(request.POST)
-        if form.is_valid():
-            print(get_domain_name(request.POST.get("website_address")))
-
-            password_object = form.save(commit=False)
-            password_object.user = request.user
-
-            password = request.POST.get("password")
-            master_password = request.POST.get("master_password")
-
-            # encrypted_password = encrypt(master_password, password)
-
-            password_object.encrypted_password = encrypt(
-                master_password, password)
-
-            password_object.icon_name = get_domain_name(
-                request.POST.get("website_address"))
-
-            password_object.save()
-            messages.success(request, "Password has been added successfully!")
-        else:
-            messages.error(request, "Fields cannot be empty.")
-            return redirect('password_manager:index')
-
-        return redirect('password_manager:index')
 
 
 class AddNewPassword(generic.View):
@@ -254,11 +258,12 @@ class UpdatePassword(generic.View):
                 password.website_address = user_website
                 password.icon_name = password_icon
                 password.save()
+
             messages.success(
                 request, "Password has been updated successfully!")
             return redirect("password_manager:index")
 
         else:
             messages.error(
-                request, "Password has not been updated successfully!")
+                request, "Master password is incorrect. Try again!")
             return redirect("password_manager:index")

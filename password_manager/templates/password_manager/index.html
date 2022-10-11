@@ -1,11 +1,25 @@
 {% extends "password_manager/base.html" %}
 {% block content%}
-
+<!-- <div class="modal fade show" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header error-message">
+                <h5 class="modal-title" id="exampleModalLabel">TEst</h5>
+            </div>
+        </div>
+    </div>
+</div> -->
 {% if messages %}
 {% for message in messages %}
 {% if message.tags == "error" %}
-<div class="alert alert-danger alert-dismissible fade show" style="background-color: #ef5350">
-    <strong>Error! {{ message }}</strong>
+<div class="modal fade show" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header error-message">
+                <h5 class="modal-title" id="exampleModalLabel">{{ message }}</h5>
+            </div>
+        </div>
+    </div>
 </div>
 {% else %}
 <div class="modal fade show" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -117,18 +131,6 @@
                         </h4>
 
                     </div>
-                    <div class="error-message-conteiner text-center">
-                        {% if messages %}
-                        <div>
-                            {% for message in messages %}
-                            <strong class="error-message"
-                                style="color: #DC4C64; visibility:hidden;">{{message}}</strong>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                        <!-- <strong class="error-message" style="color: #DC4C64; visibility:hidden;">err</strong> -->
-
-                    </div>
 
                     <div class="modal-body">
                         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
@@ -177,6 +179,10 @@
                                             placeholder="Master password" name="user_master_password" required>
                                         <label for="user_master_password" class="form__label">Master
                                             password</label>
+                                        <div class="error-message-conteiner">
+                                            <strong class="error-message"
+                                                style="color: #DC4C64; visibility:hidden;">err</strong>
+                                        </div>
                                     </div>
                                     <div class="modal-footer justify-content-center">
                                         <button type="submit" class="btn btn-outline-primary add p-2">Show
@@ -231,6 +237,12 @@
                                             placeholder="Confirm Master password" name="user_confirm_password" required>
                                         <label for="user_confirm_password" class="form__label">Confirm Master
                                             password</label>
+
+                                        <!-- <div class="error-message-conteiner">
+                                            <strong class="error-message"
+                                                style="color: #DC4C64; visibility:visible;">err</strong>
+                                        </div> -->
+
                                     </div>
 
                                     <div class="modal-footer justify-content-center">

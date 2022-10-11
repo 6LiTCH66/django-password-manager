@@ -1,13 +1,22 @@
 window.addEventListener('load', function () {
 
     $(document).ready(function () {
-        $("#exampleModal6").modal('show');
+        $("#exampleModal6").modal('show'); // success message modal
+        $("#exampleModal7").modal('show'); // error message modal
+
         $('.modal-backdrop').remove();
+        if ($('#exampleModal7').hasClass('show') || $('#exampleModal6').hasClass('show')) {
+            $("body").removeAttr("class")
+            $("body").removeAttr("style")
+        }
+
     });
+
 
     setTimeout(() => {
         $(document).ready(function () {
             $("#exampleModal6").modal('hide');
+            $("#exampleModal7").modal('hide');
         });
     }, 3000)
 
@@ -26,9 +35,10 @@ window.addEventListener('load', function () {
         });
     }
 
-    const exampleModal = document.getElementById('exampleModal2');
+    const exampleModal = document.getElementById('exampleModal2'); // show, update, delete modal
 
     exampleModal.addEventListener('show.mdb.modal', (e) => {
+        exampleModal.querySelector(".error-message").style.visibility = "hidden"
 
         // Button that triggered the modal
         const button = e.relatedTarget;
@@ -123,6 +133,7 @@ $(document).ready(function () {
                 $("#user_password").get(0).type = 'text';
                 $("#user_password").val(data["password"]);
                 $("#user_master_password").val("");
+                $(".error-message").css("visibility", "hidden");
 
             },
             error: function (error) {
@@ -131,8 +142,6 @@ $(document).ready(function () {
                 $(".error-message").css("visibility", "visible");
                 $("#user_master_password").val("");
             }
-
-
 
         });
     });
