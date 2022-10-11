@@ -152,6 +152,35 @@ class ShowUserPassword(generic.View):
         return HttpResponseRedirect('/')
 
 
+def add_new_password(request):
+    if request.method == "POST":
+        form = AddPasswordForm(request.POST)
+        if form.is_valid():
+            print(get_domain_name(request.POST.get("website_address")))
+
+            password_object = form.save(commit=False)
+            password_object.user = request.user
+
+            password = request.POST.get("password")
+            master_password = request.POST.get("master_password")
+
+            # encrypted_password = encrypt(master_password, password)
+
+            password_object.encrypted_password = encrypt(
+                master_password, password)
+
+            password_object.icon_name = get_domain_name(
+                request.POST.get("website_address"))
+
+            password_object.save()
+            messages.success(request, "Password has been added successfully!")
+        else:
+            messages.error(request, "Fields cannot be empty.")
+            return redirect('password_manager:index')
+
+        return redirect('password_manager:index')
+
+
 class AddNewPassword(generic.View):
     form_class = AddPasswordForm
 
@@ -175,6 +204,10 @@ class AddNewPassword(generic.View):
                 request.POST.get("website_address"))
 
             password_object.save()
+            messages.success(request, "Password has been added successfully!")
+        else:
+            messages.error(request, "Fields cannot be empty.")
+            return redirect('password_manager:index')
 
         return redirect('password_manager:index')
 
@@ -221,10 +254,11 @@ class UpdatePassword(generic.View):
                 password.website_address = user_website
                 password.icon_name = password_icon
                 password.save()
+            messages.success(
+                request, "Password has been updated successfully!")
+            return redirect("password_manager:index")
 
         else:
-            # return error message
-            print("Master password is not verified!")
-            messages.error(self.request, "Master password is not verified!")
-            print(messages)
-        return redirect("password_manager:index")
+            messages.error(
+                request, "Password has not been updated successfully!")
+            return redirect("password_manager:index")

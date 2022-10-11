@@ -1,9 +1,16 @@
-from dataclasses import fields
+from dataclasses import field
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from .models import PasswordManager
+
+
+class UpdatePasswordForm(forms.ModelForm):
+
+    class Meta:
+        model = PasswordManager
+        fields = ["title", "website_address", "login"]
 
 
 class ShowPasswordForm(forms.ModelForm):

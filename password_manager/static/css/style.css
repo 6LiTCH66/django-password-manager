@@ -390,3 +390,11 @@ button.btn.btn-primary.delete-btn:hover {
 strong.error-message {
     font-size: 18px;
 }
+
+
+div.modal-header.message {
+    background-color: #28a745;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
