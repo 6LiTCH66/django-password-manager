@@ -416,3 +416,12 @@ div#exampleModal6 {
     height: 95px;
     overflow-y: hidden;
 }
+
+button.auth-btn {
+    border-radius: 10px;
+}
+
+button.auth-btn:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+}
