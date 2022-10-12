@@ -1,9 +1,9 @@
-from xml import dom
+from distutils.log import error
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, HttpResponseServerError, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import TemplateView, ListView
 from .forms import UserSignupForm, AddPasswordForm, ShowPasswordForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
@@ -20,6 +20,9 @@ from .models import PasswordManager
 
 from django.contrib import messages
 
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
+
 
 class IndexView(LoginRequiredMixin, ListView):
     template_name = "password_manager/index.html"
@@ -32,8 +35,22 @@ class IndexView(LoginRequiredMixin, ListView):
 
 class CustomLoginView(LoginView):
     template_name = "registration/login.html"
-    fields = "__all__"
     redirect_authenticated_user = True
+
+    def post(self, request):
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            print(form["username"].value())
+            user = authenticate(
+                username=form.cleaned_data["username"],
+                password=form.cleaned_data["password"])
+            if user is not None:
+                login(request, user)
+                return redirect("password_manager:index")
+        else:
+            messages.error(
+                self.request, "Please enter a correct username and password. Note that both fields may be case-sensitive.")
+            return render(self.request, "registration/login.html")
 
     def get_success_url(self):
         return reverse_lazy("password_manager:index")
@@ -49,10 +66,23 @@ class CustomSignupView(generic.CreateView):
     success_url = reverse_lazy("password_manager:index")
     template_name = "registration/signup.html"
 
-    def form_valid(self, form):
-        valid = super().form_valid(form)
-        login(self.request, self.object)
-        return valid
+    def post(self, request):
+        form = UserSignupForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("password_manager:index")
+
+        else:
+            error_dict = {}
+            for field in form:
+                for error in field.errors:
+                    error_dict[field.label] = error
+
+            messages.error(
+                self.request, error_dict)
+            return render(self.request, "registration/signup.html")
 
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
@@ -119,8 +149,6 @@ exceptional_icons = {"stackoverflow": "stack-overflow",
                      "americanexpress": "cc-amex",
                      "stripe": "cc-stripe", tuple(["pay", "amazon"]): "cc-amazon-pay"}
 
-# нужно сделать список для исключений типа stackoverflow => stack-overflow
-
 
 def get_domain_name(url):
     domain = urlparse(url).netloc.split(".")
@@ -128,11 +156,11 @@ def get_domain_name(url):
     if exceptional_icons.get(tuple(domain)[0:2]) is not None:
         domain = exceptional_icons.get(tuple(domain)[0:2])
 
-    elif exceptional_icons.get(tuple(domain)[1]) is not None:
-        domain = exceptional_icons.get(tuple(domain)[1])
-
     elif len(domain) <= 2:
-        domain = domain[0]
+        if exceptional_icons.get(tuple(domain)[0]) is not None:
+            domain = exceptional_icons.get(tuple(domain)[0])
+        else:
+            domain = domain[0]
 
     else:
         domain = domain[1]
@@ -199,8 +227,6 @@ class AddNewPassword(generic.View):
             password = request.POST.get("password")
             master_password = request.POST.get("master_password")
 
-            # encrypted_password = encrypt(master_password, password)
-
             password_object.encrypted_password = encrypt(
                 master_password, password)
 
@@ -244,7 +270,6 @@ class UpdatePassword(generic.View):
         if verify_master_password(encrypted_password, user_confirm_password):
 
             if user_password and user_master_password:
-                # нужно сделать проверку через decrypt потом
                 new_password = encrypt(user_master_password, user_password)
                 password.encrypted_password = new_password
                 password.login = user_login

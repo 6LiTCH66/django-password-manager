@@ -14,7 +14,63 @@
 
                                 <h2 class="fw-bold mb-2 text-uppercase">Signup</h2>
 
-                                {{ form|crispy }}
+                                <!-- {{ form|crispy }} -->
+
+                                <div class="form__group" id="div_id_username">
+                                    <input type="text" id="id_username" class="form__field" placeholder="Username"
+                                        name="username" required>
+                                    <label for="id_username" class="form__label">Username</label>
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    {% for key, value in message.message.items %}
+                                    {% if key == "Username" %}
+                                    <div class="error-message-conteiner" align="left">
+                                        <strong class="error-message" style="color: #DC4C64; text-align: left;">
+                                            {{value}}</strong>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endfor %}
+                                    {% endif %}
+
+                                </div>
+
+                                <div class="form__group" id="div_id_email">
+                                    <input type="email" id="id_email" class="form__field" placeholder="Email"
+                                        name="email" required>
+                                    <label for="id_email" class="form__label">Email</label>
+                                </div>
+
+                                <div class="form__group" id="div_id_password1">
+                                    <input type="password" id="id_password1" class="form__field" placeholder="Password"
+                                        name="password1" required>
+                                    <label for="id_password1" class="form__label">Password</label>
+                                </div>
+                                <div class="form__group" id="div_id_password2">
+                                    <input type="password" id="id_password2" class="form__field" placeholder="Password"
+                                        name="password2" required>
+                                    <label for="id_password2" class="form__label">Password confirmation</label>
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    {% for key, value in message.message.items %}
+                                    {% if key == "Password confirmation" %}
+                                    <div class="error-message-conteiner" align="left">
+                                        <strong class="error-message" style="color: #DC4C64; text-align: left;">
+                                            {{value}}</strong>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endfor %}
+                                    {% endif %}
+
+                                </div>
+
+
+
+
+
+                                <!-- key -> Username , value -> A user with that username already exists. -->
+
 
 
                                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Signup</button>
