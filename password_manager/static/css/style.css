@@ -454,3 +454,12 @@ div.update-form {
     box-shadow: none;
     padding: 0;
 }
+
+div.itemconfiguration {
+    height: 730px;
+    overflow-y: auto;
+}
+
+div.itemconfiguration::-webkit-scrollbar {
+    display: none;
+}

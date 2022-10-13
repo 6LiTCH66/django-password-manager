@@ -1,4 +1,17 @@
 window.addEventListener('load', function () {
+
+    const exampleModal33 = document.getElementById('exampleModal33'); // modal from prifle
+    if (exampleModal33) {
+        exampleModal33.addEventListener('show.mdb.modal', (e) => {
+            // Button that triggered the modal
+            const button = e.relatedTarget;
+            // Extract info from data-mdb-* attributes
+            const password_id = button.getAttribute('data-mdb-profile-password-id');
+            document.querySelector("#yes-btn").href = password_id + "/delete"
+        })
+    }
+
+
     $('.upload-btn').on('click', function () {
         $('.upload-input').trigger('click');
     });
@@ -119,6 +132,8 @@ window.addEventListener('load', function () {
 
 
     })
+
+
 
 })
 

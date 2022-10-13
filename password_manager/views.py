@@ -247,7 +247,7 @@ class DeletePassword(generic.View):
     def get(self, request, password_id):
         password = get_object_or_404(PasswordManager, pk=password_id)
         password.delete()
-        return redirect("password_manager:index")
+        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 
 
 class UpdatePassword(generic.View):
@@ -296,3 +296,9 @@ class UpdatePassword(generic.View):
 
 class ProfileView(TemplateView):
     template_name = "user/profile.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProfileView, self).get_context_data(*args, **kwargs)
+        context['passwords'] = PasswordManager.objects.filter(
+            user=self.request.user)
+        return context

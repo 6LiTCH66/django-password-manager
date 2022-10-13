@@ -15,5 +15,7 @@ urlpatterns = [
     path("signup/", views.CustomSignupView.as_view(), name='signup'),
     path('login/', views.CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path("profile/", views.ProfileView.as_view(), name="profile")
+    path("profile/", views.ProfileView.as_view(), name="profile"),
+    path("profile/<int:password_id>/delete/",
+         views.DeletePassword.as_view(), name="delete-profile-password")
 ]

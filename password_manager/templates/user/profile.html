@@ -55,6 +55,7 @@
                                     name="username" required>
                                 <label for="id_username" class="form__label">Username</label>
                             </div>
+
                             <div class="form__group" id="div_id_firstname">
                                 <input type="text" id="id_firstname" class="form__field" placeholder="First name"
                                     name="firstname" required>
@@ -72,6 +73,7 @@
                                     required>
                                 <label for="id_email" class="form__label">Email</label>
                             </div>
+
                         </div>
 
 
@@ -105,32 +107,37 @@
                 </div>
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-3 itemconfiguration">
+                {% for password in passwords %}
                 <div class="card mb-2" style="background-color: #1d1c24;">
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
-                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33"
+                            data-mdb-profile-password-id="{{password.pk}}">
                             <i class="fa-solid fa-xmark fa-2x text-light"></i>
                         </button>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-light">
-                            <i class="fa-brands fa-youtube fa-2xl text-light"></i>
-                            YouTube
+                            <i class="fa-brands fa-{{password.icon_name}} fa-2xl text-light"></i>
+                            {{password.title|truncatechars:13}}
                             <div class="profile-container" style="display: none;">
                                 <div class="profileImage">
-                                    T
+                                    {{ password.title.0 }}
                                 </div>
                             </div>
                         </h5>
 
                         <p class="card-text text-light">
-                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                            <h7 style="color: grey;">{{password.login|truncatechars:22}}</h7>
                         </p>
                     </div>
                 </div>
+                {% endfor %}
 
-                <div class="card mb-2" style="background-color: #1d1c24;">
+
+
+                <!-- <div class="card mb-2" style="background-color: #1d1c24;">
                     <div class="d-flex justify-content-end">
 
                         <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
@@ -228,9 +235,130 @@
                     </div>
                 </div>
 
+                <div class="card mb-2" style="background-color: #1d1c24;">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            <i class="fa-solid fa-xmark fa-2x text-light"></i>
+                        </button>
+                    </div>
 
+                    <div class="card-body">
+                        <h5 class="card-title text-light">
+                            <i class="fa-brands fa-playstation fa-2xl text-light"></i>
+                            my Playstation
+                            <div class="profile-container" style="display: none;">
+                                <div class="profileImage">
+                                    T
+                                </div>
+                            </div>
+                        </h5>
 
+                        <p class="card-text text-light">
+                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                        </p>
+                    </div>
+                </div>
 
+                <div class="card mb-2" style="background-color: #1d1c24;">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            <i class="fa-solid fa-xmark fa-2x text-light"></i>
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title text-light">
+                            <i class="fa-brands fa-playstation fa-2xl text-light"></i>
+                            my Playstation
+                            <div class="profile-container" style="display: none;">
+                                <div class="profileImage">
+                                    T
+                                </div>
+                            </div>
+                        </h5>
+
+                        <p class="card-text text-light">
+                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-2" style="background-color: #1d1c24;">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            <i class="fa-solid fa-xmark fa-2x text-light"></i>
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title text-light">
+                            <i class="fa-brands fa-playstation fa-2xl text-light"></i>
+                            my Playstation
+                            <div class="profile-container" style="display: none;">
+                                <div class="profileImage">
+                                    T
+                                </div>
+                            </div>
+                        </h5>
+
+                        <p class="card-text text-light">
+                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-2" style="background-color: #1d1c24;">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            <i class="fa-solid fa-xmark fa-2x text-light"></i>
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title text-light">
+                            <i class="fa-brands fa-playstation fa-2xl text-light"></i>
+                            my Playstation
+                            <div class="profile-container" style="display: none;">
+                                <div class="profileImage">
+                                    T
+                                </div>
+                            </div>
+                        </h5>
+
+                        <p class="card-text text-light">
+                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-2" style="background-color: #1d1c24;">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            <i class="fa-solid fa-xmark fa-2x text-light"></i>
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title text-light">
+                            <i class="fa-brands fa-playstation fa-2xl text-light"></i>
+                            my Playstation
+                            <div class="profile-container" style="display: none;">
+                                <div class="profileImage">
+                                    T
+                                </div>
+                            </div>
+                        </h5>
+
+                        <p class="card-text text-light">
+                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                        </p>
+                    </div>
+                </div> -->
 
             </div>
 
