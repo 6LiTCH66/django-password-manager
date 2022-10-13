@@ -292,3 +292,7 @@ class UpdatePassword(generic.View):
             messages.error(
                 request, "Master password is incorrect. Try again!")
             return redirect("password_manager:index")
+
+
+class ProfileView(TemplateView):
+    template_name = "user/profile.html"

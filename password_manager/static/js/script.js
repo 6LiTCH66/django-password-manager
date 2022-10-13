@@ -1,4 +1,7 @@
 window.addEventListener('load', function () {
+    $('.upload-btn').on('click', function () {
+        $('.upload-input').trigger('click');
+    });
 
     $(document).ready(function () {
         $("#exampleModal6").modal('show'); // success message modal
@@ -36,7 +39,7 @@ window.addEventListener('load', function () {
     }
 
     const exampleModal = document.getElementById('exampleModal2'); // show, update, delete modal
-
+    // if exampleModal добавить проверку
     exampleModal.addEventListener('show.mdb.modal', (e) => {
         exampleModal.querySelector(".error-message").style.visibility = "hidden"
 

@@ -1,0 +1,78 @@
+{% extends "password_manager/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section>
+    <div class="container py-5">
+        <div class="row">
+
+            <div class="col-lg-4">
+                <div class="card mb-4" style="background-color: #1d1c24;">
+                    <div class="card-body text-center">
+                        <img src="{% static 'media/anonymous_user.jpeg' %}" alt="avatar" style="width: 350px;"
+                            class="img-fluid profile-pic">
+                        <div class="d-flex justify-content-center mb-2 mt-4">
+
+                            <input class="form-control form-control-lg upload-input" id="formFileLg" type="file" />
+
+                            <button type="button" class="btn btn-outline-primary upload-btn">
+                                <i class="fa-solid fa-plus fa-lg"></i>
+                                Upload new photo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card mb-4 update-form">
+                    <div class="card-body">
+
+                        <div class="row" style="background-color: #1d1c24; border-radius: 10px; padding: 25px;">
+                            <h4 class="text-light mb-4 p-0">Personal data</h4>
+                            <div class="form__group" id="div_id_username">
+                                <input type="text" id="id_username" class="form__field" placeholder="Username"
+                                    name="username" required>
+                                <label for="id_username" class="form__label">Username</label>
+                            </div>
+                            <div class="form__group" id="div_id_email">
+                                <input type="email" id="id_email" class="form__field" placeholder="Email" name="email"
+                                    required>
+                                <label for="id_email" class="form__label">Email</label>
+                            </div>
+                        </div>
+
+
+                        <div class="row"
+                            style="background-color: #1d1c24; margin-top: 10px; border-radius: 10px; padding: 25px;">
+                            <h4 class="text-light mb-4 p-0">Password managment</h4>
+                            <div class="form__group" id="div_id_password">
+                                <input type="password" id="id_primary_password" class="form__field"
+                                    placeholder="Password" name="primary_password" required>
+                                <label for="id_primary_password" class="form__label">Primary Password</label>
+                            </div>
+
+                            <div class="form__group" id="div_id_new_password">
+                                <input type="password" id="id_new_password" class="form__field"
+                                    placeholder="New Password" name="new_password" required>
+                                <label for="id_new_password" class="form__label">New password</label>
+                            </div>
+
+                            <div class="form__group" id="div_id_confirm_password">
+                                <input type="password" id="id_confirm_password" class="form__field"
+                                    placeholder="Confirm New password" name="confirm_password" required>
+                                <label for="id_confirm_password" class="form__label">Confirm New password</label>
+                            </div>
+
+                        </div>
+                        <div class="row justify-content-center">
+                            <button type="submit" class="btn btn-outline-light update-btn mt-3"
+                                style="max-width: 112px;">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

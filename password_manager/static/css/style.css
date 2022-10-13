@@ -425,3 +425,32 @@ button.auth-btn:hover {
     background-color: #28a745;
     border-color: #28a745;
 }
+
+img.profile-pic {
+    border-radius: 10px;
+}
+
+button.upload-btn {
+    padding: 10px;
+
+}
+
+input.upload-input {
+    display: none;
+}
+
+button.update-btn {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+button.update-btn:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+div.update-form {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
