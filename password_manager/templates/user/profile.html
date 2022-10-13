@@ -2,6 +2,27 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
+<div class="modal fade" id="exampleModal33" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color: white;" id="exampleModalLabel">Are you sure you want to
+                    delete this Password?
+                </h5>
+
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a class="nav-link" id="yes-btn" href="">
+                    Yes
+                </a>
+                <a class="nav-link" id="no-btn" data-mdb-dismiss="modal">
+                    No
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section>
     <div class="container py-5">
         <div class="row">
@@ -27,7 +48,6 @@
             <div class="col-lg-5">
                 <div class="card mb-4 update-form">
                     <div class="card-body">
-
                         <div class="row" style="background-color: #1d1c24; border-radius: 10px; padding: 25px;">
                             <h4 class="text-light mb-4 p-0">Personal data</h4>
                             <div class="form__group" id="div_id_username">
@@ -35,6 +55,18 @@
                                     name="username" required>
                                 <label for="id_username" class="form__label">Username</label>
                             </div>
+                            <div class="form__group" id="div_id_firstname">
+                                <input type="text" id="id_firstname" class="form__field" placeholder="First name"
+                                    name="firstname" required>
+                                <label for="id_firstname" class="form__label">First name</label>
+                            </div>
+
+                            <div class="form__group" id="div_id_lastname">
+                                <input type="text" id="id_lastname" class="form__field" placeholder="Last name"
+                                    name="lastname" required>
+                                <label for="id_lastname" class="form__label">Last name</label>
+                            </div>
+
                             <div class="form__group" id="div_id_email">
                                 <input type="email" id="id_email" class="form__field" placeholder="Email" name="email"
                                     required>
@@ -72,6 +104,136 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-3">
+                <div class="card mb-2" style="background-color: #1d1c24;">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            <i class="fa-solid fa-xmark fa-2x text-light"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-light">
+                            <i class="fa-brands fa-youtube fa-2xl text-light"></i>
+                            YouTube
+                            <div class="profile-container" style="display: none;">
+                                <div class="profileImage">
+                                    T
+                                </div>
+                            </div>
+                        </h5>
+
+                        <p class="card-text text-light">
+                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-2" style="background-color: #1d1c24;">
+                    <div class="d-flex justify-content-end">
+
+                        <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            <i class="fa-solid fa-xmark fa-2x text-light"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-light">
+                            <i class="fa-brands fa-cc-mastercard fa-2xl text-light"></i>
+                            MasterCard
+                            <div class="profile-container" style="display: none;">
+                                <div class="profileImage">
+                                    M
+                                </div>
+                            </div>
+                        </h5>
+
+                        <p class="card-text text-light">
+                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-2" style="background-color: #1d1c24;">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            <i class="fa-solid fa-xmark fa-2x text-light"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-light">
+                            <i class="fa-brands fa-cc-paypal fa-2xl text-light"></i>
+                            PayPal
+                            <div class="profile-container" style="display: none;">
+                                <div class="profileImage">
+                                    T
+                                </div>
+                            </div>
+                        </h5>
+
+                        <p class="card-text text-light">
+                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-2" style="background-color: #1d1c24;">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            <i class="fa-solid fa-xmark fa-2x text-light"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-light">
+                            <i class="fa-brands fa-apple fa-2xl text-light"></i>
+                            Apple
+                            <div class="profile-container" style="display: none;">
+                                <div class="profileImage">
+                                    T
+                                </div>
+                            </div>
+                        </h5>
+
+                        <p class="card-text text-light">
+                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-2" style="background-color: #1d1c24;">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary p-0 m-0" style="background-color: transparent;"
+                            data-mdb-toggle="modal" data-mdb-target="#exampleModal33">
+                            <i class="fa-solid fa-xmark fa-2x text-light"></i>
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title text-light">
+                            <i class="fa-brands fa-playstation fa-2xl text-light"></i>
+                            my Playstation
+                            <div class="profile-container" style="display: none;">
+                                <div class="profileImage">
+                                    T
+                                </div>
+                            </div>
+                        </h5>
+
+                        <p class="card-text text-light">
+                            <h7 style="color: grey;">ilja200303@gmail.com</h7>
+                        </p>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
         </div>
     </div>
 </section>
