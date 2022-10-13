@@ -1,9 +1,9 @@
-from dataclasses import field
+from dataclasses import field, fields
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import PasswordManager
+from .models import PasswordManager, Profile
 
 
 class UpdatePasswordForm(forms.ModelForm):
@@ -36,3 +36,18 @@ class UserSignupForm(UserCreationForm):
         help_texts = {
             'username': None,
         }
+
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ["username", "email", "first_name", "last_name"]
+
+
+class ProfileUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ['image']

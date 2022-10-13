@@ -2,7 +2,7 @@ from distutils.log import error
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, HttpResponseServerError, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import TemplateView, ListView
-from .forms import UserSignupForm, AddPasswordForm, ShowPasswordForm
+from .forms import UserSignupForm, AddPasswordForm, ShowPasswordForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
@@ -297,8 +297,28 @@ class UpdatePassword(generic.View):
 class ProfileView(TemplateView):
     template_name = "user/profile.html"
 
+    def post(self, request, user_id):
+        print("user id = ", user_id)
+        u_form = UserUpdateForm(self.request.POST, instance=request.user)
+
+        if u_form.is_valid():
+
+            u_form.save()
+            return redirect("password_manager:profile")
+        else:
+            print("u_form is invalid")
+
+        return render(request, self.template_name, {'u_form': u_form})
+
+    # def get(self, request, *args, **kwargs):
+    #     u_form = UserUpdateForm(instance=self.request.user)
+    #     return render(request, self.template_name, {"u_form": u_form})
+
     def get_context_data(self, *args, **kwargs):
         context = super(ProfileView, self).get_context_data(*args, **kwargs)
         context['passwords'] = PasswordManager.objects.filter(
             user=self.request.user)
+
+        context["u_form"] = UserUpdateForm(instance=self.request.user)
+
         return context

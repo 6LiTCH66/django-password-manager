@@ -2,6 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
+
 <div class="modal fade" id="exampleModal33" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -45,66 +46,70 @@
                 </div>
             </div>
 
+
             <div class="col-lg-5">
-                <div class="card mb-4 update-form">
-                    <div class="card-body">
-                        <div class="row" style="background-color: #1d1c24; border-radius: 10px; padding: 25px;">
-                            <h4 class="text-light mb-4 p-0">Personal data</h4>
-                            <div class="form__group" id="div_id_username">
-                                <input type="text" id="id_username" class="form__field" placeholder="Username"
-                                    name="username" required>
-                                <label for="id_username" class="form__label">Username</label>
+                <form method="post" action="{% url 'password_manager:update_profile' user.pk %}">
+                    {% csrf_token %}
+                    <div class="card mb-4 update-form">
+                        <div class="card-body">
+                            <div class="row" style="background-color: #1d1c24; border-radius: 10px; padding: 25px;">
+                                <h4 class="text-light mb-4 p-0">Personal data</h4>
+                                <div class="form__group" id="div_id_username">
+                                    <input type="text" id="id_username" class="form__field" placeholder="Username"
+                                        name="username" value="{{u_form.initial.username}}">
+                                    <label for="id_username" class="form__label">Username</label>
+                                </div>
+
+                                <div class="form__group" id="div_id_firstname">
+                                    <input type="text" id="id_firstname" class="form__field" placeholder="First name"
+                                        name="first_name" value="{{u_form.initial.first_name}}">
+                                    <label for="id_firstname" class="form__label">First name</label>
+                                </div>
+
+                                <div class="form__group" id="div_id_lastname">
+                                    <input type="text" id="id_lastname" class="form__field" placeholder="Last name"
+                                        name="last_name" value="{{u_form.initial.last_name}}">
+                                    <label for="id_lastname" class="form__label">Last name</label>
+                                </div>
+
+                                <div class="form__group" id="div_id_email">
+                                    <input type="email" id="id_email" class="form__field" placeholder="Email"
+                                        name="email" value="{{u_form.initial.email}}">
+                                    <label for="id_email" class="form__label">Email</label>
+                                </div>
+
                             </div>
 
-                            <div class="form__group" id="div_id_firstname">
-                                <input type="text" id="id_firstname" class="form__field" placeholder="First name"
-                                    name="firstname" required>
-                                <label for="id_firstname" class="form__label">First name</label>
+
+                            <div class="row"
+                                style="background-color: #1d1c24; margin-top: 10px; border-radius: 10px; padding: 25px;">
+                                <h4 class="text-light mb-4 p-0">Password managment</h4>
+                                <div class="form__group" id="div_id_password">
+                                    <input type="password" id="id_primary_password" class="form__field"
+                                        placeholder="Password" name="primary_password" value="not today bro">
+                                    <label for="id_primary_password" class="form__label">Primary Password</label>
+                                </div>
+
+                                <div class="form__group" id="div_id_new_password">
+                                    <input type="password" id="id_new_password" class="form__field"
+                                        placeholder="New Password" name="new_password">
+                                    <label for="id_new_password" class="form__label">New password</label>
+                                </div>
+
+                                <div class="form__group" id="div_id_confirm_password">
+                                    <input type="password" id="id_confirm_password" class="form__field"
+                                        placeholder="Confirm New password" name="confirm_password">
+                                    <label for="id_confirm_password" class="form__label">Confirm New password</label>
+                                </div>
+
                             </div>
-
-                            <div class="form__group" id="div_id_lastname">
-                                <input type="text" id="id_lastname" class="form__field" placeholder="Last name"
-                                    name="lastname" required>
-                                <label for="id_lastname" class="form__label">Last name</label>
+                            <div class="row justify-content-center">
+                                <button type="submit" class="btn btn-outline-light update-btn mt-3"
+                                    style="max-width: 112px;">Save changes</button>
                             </div>
-
-                            <div class="form__group" id="div_id_email">
-                                <input type="email" id="id_email" class="form__field" placeholder="Email" name="email"
-                                    required>
-                                <label for="id_email" class="form__label">Email</label>
-                            </div>
-
-                        </div>
-
-
-                        <div class="row"
-                            style="background-color: #1d1c24; margin-top: 10px; border-radius: 10px; padding: 25px;">
-                            <h4 class="text-light mb-4 p-0">Password managment</h4>
-                            <div class="form__group" id="div_id_password">
-                                <input type="password" id="id_primary_password" class="form__field"
-                                    placeholder="Password" name="primary_password" required>
-                                <label for="id_primary_password" class="form__label">Primary Password</label>
-                            </div>
-
-                            <div class="form__group" id="div_id_new_password">
-                                <input type="password" id="id_new_password" class="form__field"
-                                    placeholder="New Password" name="new_password" required>
-                                <label for="id_new_password" class="form__label">New password</label>
-                            </div>
-
-                            <div class="form__group" id="div_id_confirm_password">
-                                <input type="password" id="id_confirm_password" class="form__field"
-                                    placeholder="Confirm New password" name="confirm_password" required>
-                                <label for="id_confirm_password" class="form__label">Confirm New password</label>
-                            </div>
-
-                        </div>
-                        <div class="row justify-content-center">
-                            <button type="submit" class="btn btn-outline-light update-btn mt-3"
-                                style="max-width: 112px;">Save changes</button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
 
             <div class="col-lg-3 itemconfiguration">
