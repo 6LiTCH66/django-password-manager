@@ -428,11 +428,46 @@ button.auth-btn:hover {
 
 img.profile-pic {
     border-radius: 10px;
+    cursor: pointer;
 }
+
+/* img.profile-pic:hover {
+    transition: 0.2s;
+    opacity: 0.3;
+} */
+
+.card-body:hover .profile-pic {
+    opacity: 0.3;
+}
+
+
+.middle {
+    cursor: pointer;
+    color: white;
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.card-body:hover .middle {
+    opacity: 1;
+}
+
+
 
 button.upload-btn {
     padding: 10px;
 
+}
+
+button.btn.btn-outline-primary.upload-btn:hover {
+    background-color: #28a745;
+    border-color: #28a745;
 }
 
 input.upload-input {
@@ -442,6 +477,7 @@ input.upload-input {
 button.update-btn {
     padding: 10px;
     border-radius: 10px;
+    margin: 0;
 }
 
 button.update-btn:hover {

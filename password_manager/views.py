@@ -21,7 +21,7 @@ from .models import PasswordManager
 from django.contrib import messages
 
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
 
 class IndexView(LoginRequiredMixin, ListView):
@@ -298,7 +298,16 @@ class ProfileView(TemplateView):
     template_name = "user/profile.html"
 
     def post(self, request, user_id):
-        print("user id = ", user_id)
+
+        # user = pass_form.save(commit=False)
+        # old_password = request.POST.get('old_password')
+        # new_password = request.POST.get('new_password1')
+        # confirm_new_password = request.POST.get('new_password2')
+
+        print(request.POST)
+        # print(request.POST.get('new_password1'))
+        # print(request.POST.get('new_password2'))
+
         u_form = UserUpdateForm(self.request.POST, instance=request.user)
 
         if u_form.is_valid():
@@ -322,3 +331,16 @@ class ProfileView(TemplateView):
         context["u_form"] = UserUpdateForm(instance=self.request.user)
 
         return context
+
+
+class ChangePassword(generic.View):
+    template_name = "user/profile.html"
+    form_class = PasswordChangeForm
+
+    def post(self, request, user_id):
+        pass_form = self.form_class(self.request.user, request.POST)
+
+        print(pass_form.is_valid())
+        print(request.POST)
+        print(pass_form.errors)
+        return redirect("password_manager:profile")

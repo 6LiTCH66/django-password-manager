@@ -33,25 +33,34 @@
                     <div class="card-body text-center">
                         <img src="{% static 'media/anonymous_user.jpeg' %}" alt="avatar" style="width: 350px;"
                             class="img-fluid profile-pic">
-                        <div class="d-flex justify-content-center mb-2 mt-4">
 
-                            <input class="form-control form-control-lg upload-input" id="formFileLg" type="file" />
-
-                            <button type="button" class="btn btn-outline-primary upload-btn">
-                                <i class="fa-solid fa-plus fa-lg"></i>
-                                Upload new photo
-                            </button>
+                        <div class="middle justify-content-center">
+                            <i class="fa-solid fa-plus fa-5x"></i>
                         </div>
+
+
+                    </div>
+                    <div class="d-flex justify-content-center mb-2 mt-4">
+
+                        <input class="form-control form-control-lg upload-input" id="formFileLg" type="file" />
+
+                        <button type="button" class="btn btn-outline-primary upload-btn">
+                            <!-- <i class="fa-solid fa-plus fa-lg"></i> -->
+                            Update photo
+                        </button>
                     </div>
                 </div>
             </div>
 
 
             <div class="col-lg-5">
-                <form method="post" action="{% url 'password_manager:update_profile' user.pk %}">
-                    {% csrf_token %}
-                    <div class="card mb-4 update-form">
-                        <div class="card-body">
+
+                {% csrf_token %}
+                <div class="card mb-4 update-form">
+                    <div class="card-body">
+
+                        <form method="post" action="{% url 'password_manager:update_profile' user.pk %}">
+
                             <div class="row" style="background-color: #1d1c24; border-radius: 10px; padding: 25px;">
                                 <h4 class="text-light mb-4 p-0">Personal data</h4>
                                 <div class="form__group" id="div_id_username">
@@ -77,39 +86,52 @@
                                         name="email" value="{{u_form.initial.email}}">
                                     <label for="id_email" class="form__label">Email</label>
                                 </div>
+                                <div class="row p-0 m-0">
+                                    <button type="submit" class="btn btn-outline-light update-btn mt-3">Save
+                                        changes</button>
+                                </div>
 
                             </div>
+                        </form>
 
 
+
+
+                        <form action="{% url 'password_manager:change_password' user.pk %}" method="post">
+                            {% csrf_token %}
                             <div class="row"
                                 style="background-color: #1d1c24; margin-top: 10px; border-radius: 10px; padding: 25px;">
+
                                 <h4 class="text-light mb-4 p-0">Password managment</h4>
-                                <div class="form__group" id="div_id_password">
-                                    <input type="password" id="id_primary_password" class="form__field"
-                                        placeholder="Password" name="primary_password" value="not today bro">
-                                    <label for="id_primary_password" class="form__label">Primary Password</label>
+                                <div class="form__group" id="id_old_password">
+                                    <input type="password" id="id_old_password" class="form__field"
+                                        placeholder="Password" name="old_password" required>
+                                    <label for="id_old_password" class="form__label">Primary Password</label>
                                 </div>
 
                                 <div class="form__group" id="div_id_new_password">
-                                    <input type="password" id="id_new_password" class="form__field"
-                                        placeholder="New Password" name="new_password">
-                                    <label for="id_new_password" class="form__label">New password</label>
+                                    <input type="password" id="id_new_password1" class="form__field"
+                                        placeholder="New Password" name="new_password1" required>
+                                    <label for="id_new_password1" class="form__label">New password</label>
                                 </div>
 
                                 <div class="form__group" id="div_id_confirm_password">
-                                    <input type="password" id="id_confirm_password" class="form__field"
-                                        placeholder="Confirm New password" name="confirm_password">
-                                    <label for="id_confirm_password" class="form__label">Confirm New password</label>
+                                    <input type="password" id="id_new_password2" class="form__field"
+                                        placeholder="Confirm New password" name="new_password2" required>
+                                    <label for="id_new_password2" class="form__label">Confirm New password</label>
+                                </div>
+                                <div class="row p-0 m-0">
+                                    <button type="submit" class="btn btn-outline-light update-btn mt-3">Change
+                                        password</button>
                                 </div>
 
+
                             </div>
-                            <div class="row justify-content-center">
-                                <button type="submit" class="btn btn-outline-light update-btn mt-3"
-                                    style="max-width: 112px;">Save changes</button>
-                            </div>
-                        </div>
+                        </form>
+
                     </div>
-                </form>
+                </div>
+
             </div>
 
             <div class="col-lg-3 itemconfiguration">
