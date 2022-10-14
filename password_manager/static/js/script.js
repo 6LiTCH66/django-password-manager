@@ -12,19 +12,11 @@ window.addEventListener('load', function () {
     }
 
 
-    // $('.upload-btn').on('click', function () {
-    //     $('.upload-input').trigger('click');
-    // });
-
-    $('.profile-pic').on('click', function () {
+    $('.upload-btn').on('click', function () {
         $('.upload-input').trigger('click');
-
     });
 
-    $('.middle').on('click', function () {
-        $('.upload-input').trigger('click');
 
-    });
 
     $(document).ready(function () {
         $("#exampleModal6").modal('show'); // success message modal

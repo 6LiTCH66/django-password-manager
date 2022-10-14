@@ -3,7 +3,7 @@ from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpRespo
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import TemplateView, ListView
 from .forms import UserSignupForm, AddPasswordForm, ShowPasswordForm, ProfileUpdateForm, UserUpdateForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
@@ -247,6 +247,7 @@ class DeletePassword(generic.View):
     def get(self, request, password_id):
         password = get_object_or_404(PasswordManager, pk=password_id)
         password.delete()
+        messages.success(request, "Password has been deleted successfuly!")
         return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 
 
@@ -299,15 +300,6 @@ class ProfileView(TemplateView):
 
     def post(self, request, user_id):
 
-        # user = pass_form.save(commit=False)
-        # old_password = request.POST.get('old_password')
-        # new_password = request.POST.get('new_password1')
-        # confirm_new_password = request.POST.get('new_password2')
-
-        print(request.POST)
-        # print(request.POST.get('new_password1'))
-        # print(request.POST.get('new_password2'))
-
         u_form = UserUpdateForm(self.request.POST, instance=request.user)
 
         if u_form.is_valid():
@@ -318,10 +310,6 @@ class ProfileView(TemplateView):
             print("u_form is invalid")
 
         return render(request, self.template_name, {'u_form': u_form})
-
-    # def get(self, request, *args, **kwargs):
-    #     u_form = UserUpdateForm(instance=self.request.user)
-    #     return render(request, self.template_name, {"u_form": u_form})
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProfileView, self).get_context_data(*args, **kwargs)
@@ -338,9 +326,16 @@ class ChangePassword(generic.View):
     form_class = PasswordChangeForm
 
     def post(self, request, user_id):
-        pass_form = self.form_class(self.request.user, request.POST)
+        password_form = self.form_class(self.request.user, request.POST)
+        if password_form.is_valid():
+            password_form.save()
+            update_session_auth_hash(self.request, password_form.user)
 
-        print(pass_form.is_valid())
-        print(request.POST)
-        print(pass_form.errors)
+            messages.success(
+                request, "Password has been changed successfully!")
+            return redirect("password_manager:index")
+        else:
+            messages.error(request, "Primary password is incorrect!")
+        # print(password_form.errors)
+        # pass_form.errors => errore
         return redirect("password_manager:profile")

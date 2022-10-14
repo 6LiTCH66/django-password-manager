@@ -33,21 +33,15 @@
                     <div class="card-body text-center">
                         <img src="{% static 'media/anonymous_user.jpeg' %}" alt="avatar" style="width: 350px;"
                             class="img-fluid profile-pic">
+                        <div class="d-flex justify-content-center mb-2 mt-4">
 
-                        <div class="middle justify-content-center">
-                            <i class="fa-solid fa-plus fa-5x"></i>
+                            <input class="form-control form-control-lg upload-input" id="formFileLg" type="file" />
+
+                            <button type="button" class="btn btn-outline-primary upload-btn">
+                                <i class="fa-solid fa-plus fa-lg"></i>
+                                Upload new photo
+                            </button>
                         </div>
-
-
-                    </div>
-                    <div class="d-flex justify-content-center mb-2 mt-4">
-
-                        <input class="form-control form-control-lg upload-input" id="formFileLg" type="file" />
-
-                        <button type="button" class="btn btn-outline-primary upload-btn">
-                            <!-- <i class="fa-solid fa-plus fa-lg"></i> -->
-                            Update photo
-                        </button>
                     </div>
                 </div>
             </div>
@@ -55,12 +49,12 @@
 
             <div class="col-lg-5">
 
-                {% csrf_token %}
+
                 <div class="card mb-4 update-form">
                     <div class="card-body">
 
                         <form method="post" action="{% url 'password_manager:update_profile' user.pk %}">
-
+                            {% csrf_token %}
                             <div class="row" style="background-color: #1d1c24; border-radius: 10px; padding: 25px;">
                                 <h4 class="text-light mb-4 p-0">Personal data</h4>
                                 <div class="form__group" id="div_id_username">
@@ -105,7 +99,7 @@
                                 <h4 class="text-light mb-4 p-0">Password managment</h4>
                                 <div class="form__group" id="id_old_password">
                                     <input type="password" id="id_old_password" class="form__field"
-                                        placeholder="Password" name="old_password" required>
+                                        placeholder="Password" name="old_password">
                                     <label for="id_old_password" class="form__label">Primary Password</label>
                                 </div>
 

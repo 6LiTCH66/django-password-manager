@@ -32,18 +32,59 @@
 
 <body>
 
+  <!-- <div class="modal fade show" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header error-message">
+          <h5 class="modal-title" id="exampleModalLabel">Please enter a correct username and password. Note that both
+            fields may be case-sensitive.</h5>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  {% if messages %}
+  {% for message in messages %}
+  {% if message.tags == "error" %}
+  <div class="modal fade show" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header error-message">
+          <h5 class="modal-title" id="exampleModalLabel">{{ message }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="modal fade show" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header message">
+          <h5 class="modal-title" id="exampleModalLabel">{{ message }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+
+  {% endif %}
+
   <!-- #2d2d3a for button to add new account -->
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg" style="background-color: #1c1c24;">
     <div class="container">
-      <div class="d-flex">
-        <!-- Brand -->
+      <!-- <div class="d-flex">
+
         <i class="fa-solid fa-shield-halved fa-2xl me-2" style="color: #4547e2;"></i>
         <h4 class="text-light">Pass Keeper</h4>
 
-        <!-- Search form -->
 
-      </div>
+
+      </div> -->
+      <a class="navbar-brand mt-lg-0" href="{% url 'password_manager:index' %}">
+        <i class="fa-solid fa-shield-halved fa-2xl me-2" style="color: #4547e2;"></i>
+        <h4 class="text-light">Pass Keeper</h4>
+      </a>
 
       <!-- Center elements -->
       <ul class="navbar-nav flex-row">
