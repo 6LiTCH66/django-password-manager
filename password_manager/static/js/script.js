@@ -11,9 +11,25 @@ window.addEventListener('load', function () {
         })
     }
 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
 
     $('.upload-btn').on('click', function () {
-        $('.upload-input').trigger('click');
+        // console.log($('#id_image'));
+        $('#id_image').trigger('click');
+        $('#id_image').change(function () {
+            readURL(this)
+        });
     });
 
 

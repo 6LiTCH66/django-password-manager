@@ -105,7 +105,7 @@
         <li class="nav-item me-3 me-lg-1">
           <a class="nav-link d-sm-flex align-items-sm-center" href="#">
             <strong class="d-none d-sm-block ms-1 text-light me-2">Hi, {{ user }}</strong>
-            <img src="{% static 'media/anonymous_user.jpeg' %}" class="rounded-circle" height="33"
+            <img src="{{user.profile.image.url}}" class="rounded-circle" height="33"
               alt="Black and White Portrait of a Man" loading="lazy" />
 
           </a>
@@ -118,14 +118,14 @@
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
             <li style="position:relative">
 
-              <a class="dropdown-item profile-btn" href="{% url 'password_manager:profile' %}">
+              <a class="dropdown-item profile-btn" href="{% url 'users:profile' %}">
                 <i class="fa-solid fa-user fa-lg me-2"></i>
                 My profile
               </a>
             </li>
             <li>
 
-              <a class="dropdown-item logout-btn" href="{% url 'password_manager:logout' %}">
+              <a class="dropdown-item logout-btn" href="{% url 'users:logout' %}">
                 <i class="fa-solid fa-right-from-bracket fa-lg me-2"></i>
                 Logout
               </a>

@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from password_manager import views
 from django.contrib.auth.views import LoginView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    # path("user/signup/", views.sign_up, name='signup'),
-    # path('login/', views.CustomLoginView.as_view(), name='login'),
-    # path('logout/', LoginView.as_view(), name='logout'),
-
     path("", include("password_manager.urls")),
+    path("", include("users.urls")),
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

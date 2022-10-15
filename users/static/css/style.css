@@ -1,0 +1,473 @@
+body {
+    background-color: #131419;
+}
+
+div.card.text-white {
+    background-color: #1c1c24;
+    box-shadow: #4547e2 0px 5px 45px -10px;
+}
+
+.asteriskField {
+    display: none;
+}
+
+input.textinput.textInput {
+    background: transparent;
+    border: white solid;
+    padding: 8px;
+    color: white;
+}
+
+input.textinput.textInput.form-control:focus {
+    color: white;
+    outline: none !important;
+    border-color: #4446de;
+    box-shadow: 0 0 10px #4446de;
+}
+
+input.emailinput.form-control {
+    background: transparent;
+    border: white solid;
+    padding: 8px;
+    color: white;
+}
+
+input.emailinput.form-control:focus {
+    color: white;
+    outline: none !important;
+    border-color: #4446de;
+    box-shadow: 0 0 10px #4446de;
+}
+
+label.form-label.requiredField {
+    font-size: 25px;
+    color: white;
+}
+
+
+#hint_id_password1,
+#hint_id_password2 {
+    visibility: hidden;
+    font-size: 0 !important;
+}
+
+button.btn.add-button {
+    background-color: #2d2d3a;
+    color: white;
+    border-radius: 10px;
+}
+
+div.card-header {
+    border: none;
+    color: white;
+}
+
+div.card {
+    background-color: #1c1c24;
+    padding: 20px;
+}
+
+img.card-img-top {
+    border-radius: 20px;
+}
+
+button[type=button].btn-outline-primary {
+    border-radius: 10px;
+    width: 100%;
+}
+
+div.card-body {
+    padding-right: 0%;
+    padding-left: 0%;
+}
+
+div.card-header {
+    padding-right: 0%;
+    padding-left: 0%;
+}
+
+button.btn.btn-outline-primary {
+    border-color: #4547e2;
+    color: white;
+    /* background-color: #4547e2; */
+}
+
+button.btn.btn-outline-primary:hover {
+    border-color: #4547e2;
+    color: white;
+    background-color: #4547e2;
+}
+
+div.card-body {
+    padding: 0px;
+}
+
+.profileImage {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: #4446de;
+    font-size: 35px;
+    color: #fff;
+    text-align: center;
+    line-height: 160px;
+}
+
+div.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.modal-content {
+    background-color: #1c1c24;
+}
+
+/* input.form-control {
+    background: transparent;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: white solid;
+    border-radius: 0px;
+    padding: 8px;
+    color: white;
+    outline: none !important;
+    margin-bottom: 30px;
+    font-size: 17px;
+} */
+
+
+/* input.form-control:focus {
+    background-color: transparent;
+    color: white;
+    outline: none !important;
+    border-color: #4446de;
+    box-shadow: none !important;
+
+} */
+
+div.modal-header {
+    border: none !important;
+}
+
+div.modal-footer {
+    border: none !important;
+}
+
+button.btn.btn-outline-primary.add {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+button.btn.btn-outline-primary.add:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+
+.form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-bottom: 25px;
+}
+
+.form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #d2d2d2;
+    outline: 0;
+    font-size: 17px;
+    color: white;
+    padding: 8px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+    color: transparent;
+}
+
+.form__field:placeholder-shown~.form__label {
+    font-size: 16px;
+    cursor: text;
+    top: 20px;
+}
+
+label,
+.form__field:focus~.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 12px;
+    color: #9b9b9b;
+}
+
+.form__field:focus~.form__label {
+    color: white;
+}
+
+.form__field:focus {
+    padding-bottom: 6px;
+    border-bottom: 2px solid white;
+}
+
+
+svg.svg-inline--fa.fa-chevron-down.fa-lg {
+    color: #3d3d4d;
+    transition: 0.2s;
+}
+
+svg.svg-inline--fa.fa-chevron-down.fa-lg:hover {
+    color: white;
+    /* font-size: 23px; */
+    transition: 0.2s;
+}
+
+a.logout-btn {
+    color: white;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+a.profile-btn {
+    font-size: 15px;
+    color: white;
+}
+
+a.profile-btn:hover {
+    font-size: 15px;
+    color: white;
+    background-color: #1c1c24;
+}
+
+a.logout-btn:hover {
+    color: #DC143C;
+    transition: 0.2s;
+    background-color: #1c1c24;
+}
+
+ul.dropdown-menu.dropdown-menu-end {
+    background-color: #1c1c24;
+
+}
+
+a.typeA {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #4446de;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+}
+
+div.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h4#exampleModalLabel {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.btn.btn-outline-primary.update {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+button.btn.btn-outline-primary.update:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+button.btn.btn-outline-primary.delete {
+    border-radius: 10px;
+}
+
+button.btn.btn-outline-primary.delete:hover {
+    background-color: #DC4C64;
+    border-color: #DC4C64;
+}
+
+a.nav-link#tab-update {
+    background-color: #4446de;
+    color: white;
+    border: 2px solid #4446de;
+    border-radius: 10px;
+}
+
+a.nav-link#tab-update:hover {
+    background-color: transparent;
+}
+
+a.nav-link#tab-password {
+    background-color: #4446de;
+    color: white;
+    border: 2px solid #4446de;
+    border-radius: 10px;
+}
+
+a.nav-link#tab-password:hover {
+    background-color: transparent;
+}
+
+/* a.nav-link#tab-delete {
+    background-color: #4446de;
+    color: white;
+    border: 2px solid #4446de;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+a.nav-link#tab-delete:hover {
+    background-color: #DC4C64;
+    border-color: #DC4C64;
+
+} */
+
+a.nav-link#yes-btn {
+    background-color: #4446de;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+
+}
+
+a.nav-link#yes-btn:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+
+}
+
+a.nav-link#no-btn {
+    background-color: #4446de;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+
+}
+
+a.nav-link#no-btn:hover {
+    background-color: #DC4C64;
+    border-color: #DC4C64;
+
+}
+
+
+
+button.btn.btn-primary.delete-btn {
+    background-color: #4446de;
+    box-shadow: none;
+    width: 95%;
+    height: 49px;
+    border-radius: 10px;
+    margin: 8px;
+
+}
+
+button.btn.btn-primary.delete-btn:hover {
+    background-color: #DC4C64;
+    border-color: #DC4C64;
+
+}
+
+strong.error-message {
+    font-size: 15px;
+}
+
+
+div.modal-header.message {
+    background-color: #28a745;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+
+div.modal-header.error-message {
+    background-color: #DC4C64;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+
+div#exampleModal7 {
+    height: 130px;
+    overflow-y: hidden;
+}
+
+div#exampleModal6 {
+    height: 100px;
+    overflow-y: hidden;
+}
+
+button.auth-btn {
+    border-radius: 10px;
+}
+
+button.auth-btn:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+img.profile-pic {
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+button.upload-btn {
+    padding: 10px;
+
+}
+
+input.upload-input {
+    display: none;
+}
+
+button.update-btn {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0;
+}
+
+button.update-btn:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+div.update-form {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+div.itemconfiguration {
+    height: 730px;
+    overflow-y: auto;
+}
+
+div.itemconfiguration::-webkit-scrollbar {
+    display: none;
+}
+
+nav.navbar.navbar-expand-lg {
+    height: 66px;
+}

@@ -471,3 +471,8 @@ div.itemconfiguration::-webkit-scrollbar {
 nav.navbar.navbar-expand-lg {
     height: 66px;
 }
+
+div.hidden_image_form {
+    visibility: hidden;
+    display: none;
+}

@@ -1,7 +1,7 @@
 {% extends "password_manager/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<form action="{% url 'password_manager:signup' %}" method="post">
+<form action="{% url 'users:signup' %}" method="post">
     {% csrf_token %}
     <section class="vh-90 gradient-custom">
         <div class="container py-5 h-100">
@@ -70,7 +70,7 @@
                             </div>
 
                             <div>
-                                <p class="mb-0">Have an account? <a href="{% url 'password_manager:login' %}"
+                                <p class="mb-0">Have an account? <a href="{% url 'users:login' %}"
                                         class="text-white-50 fw-bold">Login</a>
                                 </p>
                             </div>

@@ -29,22 +29,39 @@
         <div class="row">
 
             <div class="col-lg-4">
-                <div class="card mb-4" style="background-color: #1d1c24;">
-                    <div class="card-body text-center">
-                        <img src="{% static 'media/anonymous_user.jpeg' %}" alt="avatar" style="width: 350px;"
-                            class="img-fluid profile-pic">
-                        <div class="d-flex justify-content-center mb-2 mt-4">
+                <form action="{% url 'users:update_profile' user.pk %}" method="post" enctype="multipart/form-data">
 
-                            <input class="form-control form-control-lg upload-input" id="formFileLg" type="file" />
 
-                            <button type="button" class="btn btn-outline-primary upload-btn">
-                                <i class="fa-solid fa-plus fa-lg"></i>
-                                Upload new photo
-                            </button>
+                    <!-- <div class="hidden_image_form">
+                        {{p_form}}
+                    </div> -->
+
+                    {% csrf_token %}
+                    <div class="card mb-4" style="background-color: #1d1c24;">
+                        <div class="card-body text-center">
+                            <img src="{{user.profile.image.url}}" alt="avatar" style="width: 350px;"
+                                class="img-fluid profile-pic">
+                            <div class="d-flex justify-content-center mb-2 mt-4">
+
+                                <!-- <input class="form-control form-control-lg upload-input" id="id_image" type="file"
+                                    accept="image/*" name="image" value="" /> -->
+
+                                <button type="button" class="btn btn-outline-primary upload-btn">
+                                    <i class="fa-solid fa-plus fa-lg"></i>
+                                    Upload new photo
+                                </button>
+
+                                <!-- <button type="submit" class="btn btn-outline-light update-btn mt-3">Save
+                                    changes</button> -->
+
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                </form>
             </div>
+
+
 
 
             <div class="col-lg-5">
@@ -53,7 +70,13 @@
                 <div class="card mb-4 update-form">
                     <div class="card-body">
 
-                        <form method="post" action="{% url 'password_manager:update_profile' user.pk %}">
+                        <form method="post" action="{% url 'users:update_profile' user.pk %}"
+                            enctype="multipart/form-data">
+
+                            <div class="hidden_image_form">
+                                {{p_form}}
+                            </div>
+
                             {% csrf_token %}
                             <div class="row" style="background-color: #1d1c24; border-radius: 10px; padding: 25px;">
                                 <h4 class="text-light mb-4 p-0">Personal data</h4>
@@ -91,7 +114,7 @@
 
 
 
-                        <form action="{% url 'password_manager:change_password' user.pk %}" method="post">
+                        <form action="{% url 'users:change_password' user.pk %}" method="post">
                             {% csrf_token %}
                             <div class="row"
                                 style="background-color: #1d1c24; margin-top: 10px; border-radius: 10px; padding: 25px;">
