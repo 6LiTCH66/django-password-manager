@@ -295,50 +295,5 @@ class UpdatePassword(generic.View):
             return redirect("password_manager:index")
 
 
-# class ProfileView(TemplateView):
-#     template_name = "user/profile.html"
-
-#     def post(self, request, user_id):
-
-#         u_form = UserUpdateForm(self.request.POST, instance=request.user)
-#         p_form = ProfileUpdateForm(
-#             self.request.POST, self.request.FILES, instance=request.user.profile)
-#         if u_form.is_valid() and p_form.is_valid():
-#             u_form.save()
-#             p_form.save()
-#             return redirect("password_manager:profile")
-#         else:
-#             print("u_form or p_form is invalid")
-
-#         return render(request, self.template_name, {'u_form': u_form})
-
-#     def get_context_data(self, *args, **kwargs):
-#         context = super(ProfileView, self).get_context_data(*args, **kwargs)
-#         context['passwords'] = PasswordManager.objects.filter(
-#             user=self.request.user)
-
-#         context["u_form"] = UserUpdateForm(instance=self.request.user)
-#         context["p_form"] = UserUpdateForm(
-#             self.request.POST, self.request.FILES, instance=self.request.user.profile)
-
-#         return context
-
-
-# class ChangePassword(generic.View):
-#     template_name = "user/profile.html"
-#     form_class = PasswordChangeForm
-
-#     def post(self, request, user_id):
-#         password_form = self.form_class(self.request.user, request.POST)
-#         if password_form.is_valid():
-#             password_form.save()
-#             update_session_auth_hash(self.request, password_form.user)
-
-#             messages.success(
-#                 request, "Password has been changed successfully!")
-#             return redirect("password_manager:index")
-#         else:
-#             messages.error(request, "Primary password is incorrect!")
-#         # print(password_form.errors)
-#         # pass_form.errors => errore
-#         return redirect("password_manager:profile")
+class ErorrHandlier(TemplateView):
+    template_name = "error/404.html"

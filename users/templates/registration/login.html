@@ -3,7 +3,6 @@
 {% block content %}
 <form action="{% url 'users:login' %}" method="post">
     {% csrf_token %}
-    <!-- <button type="submit" class="btn btn-success">Submit</button> -->
     <section class="vh-90 gradient-custom">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -15,17 +14,6 @@
 
                                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                 <p class="text-white-50 mb-5">Please enter your login and password!</p>
-                                <!-- {% if messages %}
-                                {% for message in messages %}
-                                {% if message.tags == "error" %}
-                                <div class="modal-header error-message">
-                                    <h5 class="modal-title" id="exampleModalLabel">{{ message }}</h5>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
-                                {% endif %} -->
-
-                                <!-- {{ form|crispy}} -->
 
                                 <div class="form__group" id="div_id_username">
                                     <input type="text" id="id_username" class="form__field" placeholder="Username"
