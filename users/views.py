@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView
 from .forms import UserCreationForm, UserUpdateForm, ProfileUpdateForm, UserSignupForm
-from password_manager.models import PasswordManager
+from password_manager.models import PasswordManager, PrivateKey
 from django.views import generic
 from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
+
+from Cryptodome.Cipher import AES
+from Cryptodome.Random import get_random_bytes
+from Cryptodome.Protocol.KDF import PBKDF2
 
 
 class CustomLoginView(LoginView):
@@ -26,7 +30,8 @@ class CustomLoginView(LoginView):
                 return redirect("password_manager:index")
         else:
             messages.error(
-                self.request, "Please enter a correct username and password. Note that both fields may be case-sensitive.")
+                self.request,
+                "Please enter a correct username and password. Note that both fields may be case-sensitive.")
             return render(self.request, "registration/login.html")
 
     def get_success_url(self):
@@ -119,4 +124,36 @@ class ChangePassword(generic.View):
             messages.error(request, "Primary password is incorrect!")
         # print(password_form.errors)
         # pass_form.errors => errore
+        return redirect("users:profile")
+
+
+def derive_key(password, salt):
+    kdf = PBKDF2(password, salt, 64, 1000)
+    key = kdf[:32]
+    return key
+
+
+class SetGlobalMasterPassword(generic.View):
+    template_name = "user/profile.html"
+
+    def post(self, request, user_id):
+        master_key = request.POST['master_password']
+        confirm_master_password = request.POST['confirm_master_password']
+
+        if master_key == confirm_master_password:
+
+            salt = get_random_bytes(AES.block_size)
+            private_key = derive_key(master_key, salt)
+
+            is_key_exists = PrivateKey.objects.filter(user__id=user_id).exists()
+            if not is_key_exists:
+                PrivateKey.objects.create(private_key=private_key, user_id=user_id)
+            else:
+                print("User with that key exists!")
+
+            # send success message
+        else:
+            pass
+            # send error message
+
         return redirect("users:profile")

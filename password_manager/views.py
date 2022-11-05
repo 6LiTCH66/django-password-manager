@@ -1,5 +1,6 @@
 from distutils.log import error
-from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, HttpResponseServerError, JsonResponse
+from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, HttpResponseServerError, \
+    JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import TemplateView, ListView
 from .forms import AddPasswordForm, ShowPasswordForm
@@ -30,7 +31,8 @@ class IndexView(LoginRequiredMixin, ListView):
     context_object_name = "passwords_list"
 
     def get_queryset(self):
-        return PasswordManager.objects.filter(user=self.request.user).values("id", "title", "website_address", "login", "icon_name")
+        return PasswordManager.objects.filter(user=self.request.user).values("id", "title", "website_address", "login",
+                                                                             "icon_name")
 
 
 # class CustomLoginView(LoginView):
@@ -102,7 +104,8 @@ def encrypt(user_master_password, social_password):
 
     cipher_config = AES.new(private_key, AES.MODE_GCM)
     cipher_text, tag = cipher_config.encrypt_and_digest(
-        bytes(social_password, "utf-8"))
+        bytes(social_password, "utf-8")
+    )
 
     dictionary = {
         'cipher_text': b64encode(cipher_text).decode('utf-8'),
@@ -115,7 +118,6 @@ def encrypt(user_master_password, social_password):
 
 
 def decrypt(encrypted_dict, user_master_password):
-
     salt = b64decode(encrypted_dict["salt"])
     cipher_text = b64decode(encrypted_dict["cipher_text"])
     nonce = b64decode(encrypted_dict["nonce"])

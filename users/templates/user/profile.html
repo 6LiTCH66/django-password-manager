@@ -35,27 +35,53 @@
                     </div> -->
 
                         {% csrf_token %}
-                        <div class="card mb-4" style="background-color: #1d1c24;">
+                        <div class="card" style="background-color: #1d1c24; margin-bottom: 10px">
                             <div class="card-body text-center">
                                 <img src="{{ user.profile.image.url }}" alt="avatar" style="width: 350px;"
                                      class="img-fluid profile-pic">
                                 <div class="d-flex justify-content-center mb-2 mt-4">
-
-                                    <!-- <input class="form-control form-control-lg upload-input" id="id_image" type="file"
-                                        accept="image/*" name="image" value="" /> -->
 
                                     <button type="button" class="btn btn-outline-primary upload-btn">
                                         <i class="fa-solid fa-plus fa-lg"></i>
                                         Upload new photo
                                     </button>
 
-                                    <!-- <button type="submit" class="btn btn-outline-light update-btn mt-3">Save
-                                        changes</button> -->
-
                                 </div>
                             </div>
                         </div>
 
+                    </form>
+                    <form action="{% url 'users:global_master_password' user.pk %}" method="post">
+                        {% csrf_token %}
+
+                        <div class="card mb-3 mb-lg-0">
+                            <div class="card-body p-0">
+
+                                <h4 class="text-light mb-4 p-0">Set Global Master Password</h4>
+                                <div class="form__group" id="div_id_master_password">
+                                    <input type="password" id="id_master_password" class="form__field"
+                                           placeholder="Master password"
+                                           name="master_password">
+                                    <label for="id_master_password" class="form__label">Master password</label>
+                                </div>
+
+                                <div class="form__group" id="div_id_confirm_master_password">
+                                    <input type="password" id="id_confirm_master_password" class="form__field"
+                                           placeholder="Confirm Master password"
+                                           name="confirm_master_password">
+                                    <label for="id_confirm_master_password" class="form__label">Confirm Master
+                                        password</label>
+                                </div>
+
+                                <div class="row p-0 m-0">
+                                    <button type="submit" class="btn btn-outline-light update-btn mt-3">Save
+                                        master password
+                                    </button>
+                                </div>
+
+
+                            </div>
+                        </div>
                     </form>
                 </div>
 
@@ -195,4 +221,5 @@
             </div>
         </div>
     </section>
+
 {% endblock %}

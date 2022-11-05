@@ -17,5 +17,7 @@ urlpatterns = [
     path("profile/<int:user_id>/update",
          views.ProfileView.as_view(), name="update_profile"),
     path("profile/<int:user_id>/change-password",
-         views.ChangePassword.as_view(), name="change_password")
+         views.ChangePassword.as_view(), name="change_password"),
+    path("profile/<int:user_id>/set-global-password", views.SetGlobalMasterPassword.as_view(),
+         name="global_master_password")
 ]

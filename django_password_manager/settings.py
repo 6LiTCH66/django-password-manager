@@ -33,7 +33,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 INSTALLED_APPS = [
     'password_manager',
-    "users.apps.UsersConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fontawesomefree',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    "users.apps.UsersConfig",
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
@@ -144,6 +144,7 @@ LOGOUT_REDIRECT_URL = '/login'
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/user/signup'
 
+# to heroku Debug = False
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
