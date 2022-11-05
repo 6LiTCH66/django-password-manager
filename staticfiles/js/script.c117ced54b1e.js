@@ -33,7 +33,6 @@ window.addEventListener('load', function () {
     });
 
 
-
     $(document).ready(function () {
         $("#exampleModal6").modal('show'); // success message modal
         $("#exampleModal7").modal('show'); // error message modal
@@ -53,7 +52,7 @@ window.addEventListener('load', function () {
             $("#exampleModal7").modal('hide');
         });
     }, 3000)
-
+    console.log("test 2")
 
 
     var allGs = document.getElementsByTagName('g');
@@ -117,8 +116,6 @@ window.addEventListener('load', function () {
             .insertAdjacentHTML('afterbegin', `<i class="fa-brands fa-${password_icon} fa-2xl text-light me-2" style="color: #4547e2;"></i>`)
 
 
-
-
         setTimeout(() => {
             $('#exampleModalLabel').ready(function () {
 
@@ -140,7 +137,7 @@ window.addEventListener('load', function () {
 
         exampleModal.querySelector('#password_id').value = password_id // setting hidden input to password's id
 
-        exampleModal.querySelector('#user_password').value = "*********" // if modal form is opend clear 'Password' input
+        exampleModal.querySelector('#user_password').value = "*********" // if modal form is opened clear 'Password' input
         exampleModal.querySelector('#user_password').type = 'password' // and set password type back
         exampleModal.querySelector('#user_master_password').value = "" // clear Master password input from previous password
 
@@ -148,13 +145,10 @@ window.addEventListener('load', function () {
         document.querySelector("#myForm1").action = password_id + "/update/" // setting action for form to update password
 
 
-
     })
 
 
-
 })
-
 
 
 $(document).ready(function () {

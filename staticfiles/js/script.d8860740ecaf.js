@@ -52,9 +52,7 @@ window.addEventListener('load', function () {
             $("#exampleModal7").modal('hide');
         });
     }, 3000)
-
-    console.log("test 3")
-    console.log("test 4")
+    console.log("test 1")
 
 
     var allGs = document.getElementsByTagName('g');
