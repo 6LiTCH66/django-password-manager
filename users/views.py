@@ -12,6 +12,7 @@ from django.contrib.auth.views import LoginView
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
 from Cryptodome.Protocol.KDF import PBKDF2
+from password_manager.views import derive_key
 
 
 class CustomLoginView(LoginView):
@@ -127,12 +128,6 @@ class ChangePassword(generic.View):
         return redirect("users:profile")
 
 
-def derive_key(password, salt):
-    kdf = PBKDF2(password, salt, 64, 1000)
-    key = kdf[:32]
-    return key
-
-
 class SetGlobalMasterPassword(generic.View):
     template_name = "user/profile.html"
 
@@ -146,14 +141,17 @@ class SetGlobalMasterPassword(generic.View):
             private_key = derive_key(master_key, salt)
 
             is_key_exists = PrivateKey.objects.filter(user__id=user_id).exists()
+
             if not is_key_exists:
                 PrivateKey.objects.create(private_key=private_key, user_id=user_id)
-            else:
-                print("User with that key exists!")
+                messages.success(
+                    request, "Global Master Password has been set successfully!")
 
-            # send success message
+            else:
+                messages.error(request, "User with Global Master Password already exists!")
+                # print("User with that key exists!")
+
         else:
-            pass
-            # send error message
+            messages.error(request, "The two passwords don't match!")
 
         return redirect("users:profile")
