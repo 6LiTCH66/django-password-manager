@@ -17,12 +17,14 @@ from Cryptodome.Protocol.KDF import PBKDF2
 import json
 from urllib.parse import urlparse
 
-from .models import PasswordManager
+from .models import PasswordManager, PrivateKey
 
 from django.contrib import messages
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+
+from .utils import derive_key, decrypt, encrypt, verify_master_password
 
 
 class IndexView(LoginRequiredMixin, ListView):
@@ -30,112 +32,60 @@ class IndexView(LoginRequiredMixin, ListView):
 
     context_object_name = "passwords_list"
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(IndexView, self).get_context_data(*args, **kwargs)
+        context["is_private_key_exists"] = PrivateKey.objects.filter(user=self.request.user).exists()
+        return context
+
     def get_queryset(self):
         return PasswordManager.objects.filter(user=self.request.user).values("id", "title", "website_address", "login",
                                                                              "icon_name")
 
 
-# class CustomLoginView(LoginView):
-#     template_name = "registration/login.html"
-#     redirect_authenticated_user = True
-
-#     def post(self, request):
-#         form = AuthenticationForm(data=request.POST)
-#         if form.is_valid():
-#             print(form["username"].value())
-#             user = authenticate(
-#                 username=form.cleaned_data["username"],
-#                 password=form.cleaned_data["password"])
-#             if user is not None:
-#                 login(request, user)
-#                 return redirect("password_manager:index")
-#         else:
-#             messages.error(
-#                 self.request, "Please enter a correct username and password. Note that both fields may be case-sensitive.")
-#             return render(self.request, "registration/login.html")
-
-#     def get_success_url(self):
-#         return reverse_lazy("password_manager:index")
-
-#     def get(self, *args, **kwargs):
-#         if self.request.user.is_authenticated:
-#             return redirect('password_manager:index')
-#         return super(CustomLoginView, self).get(*args, **kwargs)
+# def derive_key(password, salt):
+#     kdf = PBKDF2(password, salt, 64, 1000)
+#     key = kdf[:32]
+#     return key
 
 
-# class CustomSignupView(generic.CreateView):
-#     form_class = UserSignupForm
-#     success_url = reverse_lazy("password_manager:index")
-#     template_name = "registration/signup.html"
-
-#     def post(self, request):
-#         form = UserSignupForm(request.POST)
-
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect("password_manager:index")
-
-#         else:
-#             error_dict = {}
-#             for field in form:
-#                 for error in field.errors:
-#                     error_dict[field.label] = error
-
-#             messages.error(
-#                 self.request, error_dict)
-#             return render(self.request, "registration/signup.html")
-
-#     def get(self, *args, **kwargs):
-#         if self.request.user.is_authenticated:
-#             return redirect('password_manager:index')
-#         return super(CustomSignupView, self).get(*args, **kwargs)
+# def encrypt(user_master_password, social_password):
+#     salt = get_random_bytes(AES.block_size)
+#     private_key = derive_key(user_master_password, salt)
+#
+#     cipher_config = AES.new(private_key, AES.MODE_GCM)
+#     cipher_text, tag = cipher_config.encrypt_and_digest(
+#         bytes(social_password, "utf-8")
+#     )
+#
+#     dictionary = {
+#         'cipher_text': b64encode(cipher_text).decode('utf-8'),
+#         'salt': b64encode(salt).decode('utf-8'),
+#         'nonce': b64encode(cipher_config.nonce).decode('utf-8'),
+#         'tag': b64encode(tag).decode('utf-8')
+#     }
+#
+#     return json.dumps(dictionary)
 
 
-def derive_key(password, salt):
-    kdf = PBKDF2(password, salt, 64, 1000)
-    key = kdf[:32]
-    return key
+# def decrypt(encrypted_dict, user_master_password):
+#     salt = b64decode(encrypted_dict["salt"])
+#     cipher_text = b64decode(encrypted_dict["cipher_text"])
+#     nonce = b64decode(encrypted_dict["nonce"])
+#     tag = b64decode(encrypted_dict["tag"])
+#
+#     private_key = derive_key(user_master_password, salt)
+#     cipher = AES.new(private_key, AES.MODE_GCM, nonce=nonce)
+#
+#     decrypted = cipher.decrypt_and_verify(cipher_text, tag)
+#     return decrypted
 
 
-def encrypt(user_master_password, social_password):
-    salt = get_random_bytes(AES.block_size)
-    private_key = derive_key(user_master_password, salt)
-
-    cipher_config = AES.new(private_key, AES.MODE_GCM)
-    cipher_text, tag = cipher_config.encrypt_and_digest(
-        bytes(social_password, "utf-8")
-    )
-
-    dictionary = {
-        'cipher_text': b64encode(cipher_text).decode('utf-8'),
-        'salt': b64encode(salt).decode('utf-8'),
-        'nonce': b64encode(cipher_config.nonce).decode('utf-8'),
-        'tag': b64encode(tag).decode('utf-8')
-    }
-
-    return json.dumps(dictionary)
-
-
-def decrypt(encrypted_dict, user_master_password):
-    salt = b64decode(encrypted_dict["salt"])
-    cipher_text = b64decode(encrypted_dict["cipher_text"])
-    nonce = b64decode(encrypted_dict["nonce"])
-    tag = b64decode(encrypted_dict["tag"])
-
-    private_key = derive_key(user_master_password, salt)
-    cipher = AES.new(private_key, AES.MODE_GCM, nonce=nonce)
-
-    decrypted = cipher.decrypt_and_verify(cipher_text, tag)
-    return decrypted
-
-
-def verify_master_password(encrypted_dict, master_password):
-    try:
-        decrypt(encrypted_dict, master_password)
-        return True
-    except:
-        return False
+# def verify_master_password(encrypted_dict, master_password):
+#     try:
+#         decrypt(encrypted_dict, master_password)
+#         return True
+#     except:
+#         return False
 
 
 exceptional_icons = {"stackoverflow": "stack-overflow",
@@ -167,16 +117,6 @@ def get_domain_name(url):
     else:
         domain = domain[1]
 
-    # if len(domain) >= 3:
-    #     if exceptional_icons.get(tuple(domain)[0:2]) is not None:
-    #         domain = exceptional_icons.get(tuple(domain)[0:2])
-    #     elif exceptional_icons.get(domain) is not None:
-    #         domain = exceptional_icons.get(domain)
-    #     else:
-    #         domain = domain[1]
-    # else:
-    #     domain = domain[0]
-
     return domain
 
 
@@ -197,10 +137,14 @@ class ShowUserPassword(generic.View):
 
             is_master_password_valid = verify_master_password(
                 encrypted_dict, user_master_password)
+
+            # print(PrivateKey.objects.get(user=request.user).private_key)
+
             if is_master_password_valid:
                 decrypted_password = decrypt(
                     encrypted_dict, user_master_password).decode('utf-8')
-                print(decrypted_password)
+
+                # print(decrypted_password)
 
                 response = {
                     'password': decrypted_password,
@@ -219,18 +163,33 @@ class AddNewPassword(generic.View):
     form_class = AddPasswordForm
 
     def post(self, request):
+
         form = AddPasswordForm(request.POST)
+
         if form.is_valid():
-            print(get_domain_name(request.POST.get("website_address")))
+            # print(get_domain_name(request.POST.get("website_address")))
 
             password_object = form.save(commit=False)
             password_object.user = request.user
 
             password = request.POST.get("password")
-            master_password = request.POST.get("master_password")
+
+            is_private_key_exists = PrivateKey.objects.filter(user=request.user).exists()
+
+            # print(PrivateKey.objects.get(user=request.user).private_key)
+
+            salt = PrivateKey.objects.get(user=request.user).salt
+
+            if not request.POST.get("master_password") and is_private_key_exists:
+                master_password = PrivateKey.objects.get(user=request.user).private_key
+
+                # print(master_password)
+            else:
+                master_password = request.POST.get("master_password")
+                # print("with master key")
 
             password_object.encrypted_password = encrypt(
-                master_password, password)
+                master_password, password, salt)
 
             password_object.icon_name = get_domain_name(
                 request.POST.get("website_address"))
@@ -249,7 +208,7 @@ class DeletePassword(generic.View):
     def get(self, request, password_id):
         password = get_object_or_404(PasswordManager, pk=password_id)
         password.delete()
-        messages.success(request, "Password has been deleted successfuly!")
+        messages.success(request, "Password has been deleted successfully!")
         return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 
 
@@ -273,13 +232,36 @@ class UpdatePassword(generic.View):
         if verify_master_password(encrypted_password, user_confirm_password):
 
             if user_password and user_master_password:
-                new_password = encrypt(user_master_password, user_password)
+                
+                new_password = encrypt(user_master_password, user_password, None)
                 password.encrypted_password = new_password
                 password.login = user_login
                 password.title = user_title
                 password.website_address = user_website
                 password.icon_name = password_icon
                 password.save()
+
+            elif not user_password and user_master_password:
+
+                user_current_social_password = decrypt(encrypted_password, user_confirm_password).decode("utf-8")
+                new_password = encrypt(user_master_password, user_current_social_password, None)
+                password.encrypted_password = new_password
+                password.login = user_login
+                password.title = user_title
+                password.website_address = user_website
+                password.icon_name = password_icon
+                password.save()
+
+            elif user_password and not user_master_password:
+
+                new_password = encrypt(user_confirm_password, user_password, None)
+                password.encrypted_password = new_password
+                password.login = user_login
+                password.title = user_title
+                password.website_address = user_website
+                password.icon_name = password_icon
+                password.save()
+
             else:
                 password.login = user_login
                 password.title = user_title

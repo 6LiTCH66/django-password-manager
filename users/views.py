@@ -12,7 +12,7 @@ from django.contrib.auth.views import LoginView
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
 from Cryptodome.Protocol.KDF import PBKDF2
-from password_manager.views import derive_key
+from password_manager.utils import derive_key
 
 
 class CustomLoginView(LoginView):
@@ -22,7 +22,9 @@ class CustomLoginView(LoginView):
     def post(self, request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            print(form["username"].value())
+
+            # print(form["username"].value())
+
             user = authenticate(
                 username=form.cleaned_data["username"],
                 password=form.cleaned_data["password"])
@@ -92,12 +94,18 @@ class ProfileView(TemplateView):
             return redirect("users:profile")
         else:
             # same here but opposite message
-            print("u_form is invalid")
+            messages.error(request, "Your entered data is incorrect!")
+
+            # print("u_form is invalid")
 
         return render(request, self.template_name, {'u_form': u_form})
 
     def get_context_data(self, *args, **kwargs):
+
         context = super(ProfileView, self).get_context_data(*args, **kwargs)
+
+        context["is_private_key_exists"] = PrivateKey.objects.filter(user=self.request.user).exists()
+
         context['passwords'] = PasswordManager.objects.filter(
             user=self.request.user)
 
@@ -143,13 +151,13 @@ class SetGlobalMasterPassword(generic.View):
             is_key_exists = PrivateKey.objects.filter(user__id=user_id).exists()
 
             if not is_key_exists:
-                PrivateKey.objects.create(private_key=private_key, user_id=user_id)
+                PrivateKey.objects.create(private_key=private_key, salt=salt, user_id=user_id)
+
                 messages.success(
                     request, "Global Master Password has been set successfully!")
 
             else:
                 messages.error(request, "User with Global Master Password already exists!")
-                # print("User with that key exists!")
 
         else:
             messages.error(request, "The two passwords don't match!")
