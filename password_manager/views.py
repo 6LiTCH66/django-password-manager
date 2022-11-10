@@ -232,7 +232,7 @@ class UpdatePassword(generic.View):
         if verify_master_password(encrypted_password, user_confirm_password):
 
             if user_password and user_master_password:
-                
+
                 new_password = encrypt(user_master_password, user_password, None)
                 password.encrypted_password = new_password
                 password.login = user_login
@@ -279,5 +279,5 @@ class UpdatePassword(generic.View):
             return redirect("password_manager:index")
 
 
-class ErorrHandlier(TemplateView):
+class ErrorHandler(TemplateView):
     template_name = "error/404.html"

@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 from django.views.static import serve
 
-handler404 = views.ErorrHandlier.as_view()
+handler404 = views.ErrorHandler.as_view()
 
 urlpatterns = [
     path("", include("password_manager.urls")),

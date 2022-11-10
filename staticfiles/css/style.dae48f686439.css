@@ -488,10 +488,5 @@ button#delete-pass-btn:hover {
 }
 
 .error-404 {
-    display: block flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /*min-height: 100vh;*/
-    padding-top: 270px;
+    background-color: yellow;
 }

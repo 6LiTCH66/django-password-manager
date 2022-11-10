@@ -189,14 +189,14 @@ button.btn.btn-outline-primary.add:hover {
     color: transparent;
 }
 
-.form__field:placeholder-shown~.form__label {
+.form__field:placeholder-shown ~ .form__label {
     font-size: 16px;
     cursor: text;
     top: 20px;
 }
 
 label,
-.form__field:focus~.form__label {
+.form__field:focus ~ .form__label {
     position: absolute;
     top: 0;
     display: block;
@@ -205,7 +205,7 @@ label,
     color: #9b9b9b;
 }
 
-.form__field:focus~.form__label {
+.form__field:focus ~ .form__label {
     color: white;
 }
 
@@ -371,7 +371,6 @@ a.nav-link#no-btn:hover {
 }
 
 
-
 button.btn.btn-primary.delete-btn {
     background-color: #4446de;
     box-shadow: none;
@@ -432,7 +431,6 @@ img.profile-pic {
 }
 
 
-
 button.upload-btn {
     padding: 10px;
 
@@ -487,4 +485,13 @@ button#delete-pass-btn {
 
 button#delete-pass-btn:hover {
     color: #DC4C64 !important;
+}
+
+.error-404 {
+    display: block flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*min-height: 100vh;*/
+    padding-top: 270px;
 }
