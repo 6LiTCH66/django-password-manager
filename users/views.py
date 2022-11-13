@@ -138,26 +138,51 @@ class SetGlobalMasterPassword(generic.View):
     template_name = "user/profile.html"
 
     def post(self, request, user_id):
-        master_key = request.POST['master_password']
-        confirm_master_password = request.POST['confirm_master_password']
 
-        if master_key == confirm_master_password:
+        if request.POST.get('master_password') and request.POST.get('confirm_master_password'):
 
-            salt = get_random_bytes(AES.block_size)
-            private_key = derive_key(master_key, salt)
+            master_key = request.POST.get('master_password')
+            confirm_master_password = request.POST.get('confirm_master_password')
 
-            is_key_exists = PrivateKey.objects.filter(user__id=user_id).exists()
+            if master_key == confirm_master_password:
 
-            if not is_key_exists:
-                PrivateKey.objects.create(private_key=private_key, salt=salt, user_id=user_id)
+                salt = get_random_bytes(AES.block_size)
+                private_key = derive_key(master_key, salt)
 
-                messages.success(
-                    request, "Global Master Password has been set successfully!")
+                is_key_exists = PrivateKey.objects.filter(user__id=user_id).exists()
+
+                if not is_key_exists:
+                    PrivateKey.objects.create(private_key=private_key, salt=salt, user_id=user_id)
+
+                    messages.success(
+                        request, "Global Master Password has been set successfully!")
+
+                else:
+                    messages.error(request, "User with Global Master Password already exists!")
 
             else:
-                messages.error(request, "User with Global Master Password already exists!")
-
+                messages.error(request, "The two passwords don't match!")
         else:
-            messages.error(request, "The two passwords don't match!")
+
+            primary_master_password = request.POST.get("primary_master_password")
+            new_master_password = request.POST.get("new_master_password")
+            confirm_new_master_password = request.POST.get("confirm_new_master_password")
+
+            if new_master_password == confirm_new_master_password:
+
+                new_salt = get_random_bytes(AES.block_size)
+                new_private_key = derive_key(new_master_password, new_salt)
+
+                old_salt = PrivateKey.objects.get(user__id=user_id).salt
+                old_private_key = derive_key(primary_master_password, old_salt)
+
+                key_obj = PrivateKey.objects.get(private_key=old_private_key, user__id=user_id)
+                key_obj.private_key = new_private_key
+                key_obj.salt = new_salt
+                key_obj.save()
+
+                messages.success(request, "Your Master Password has been changed successfully!")
+            else:
+                messages.error(request, "Cannot update Global Master Password")
 
         return redirect("users:profile")
