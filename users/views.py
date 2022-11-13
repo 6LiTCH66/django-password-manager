@@ -96,9 +96,7 @@ class ProfileView(TemplateView):
             # same here but opposite message
             messages.error(request, "Your entered data is incorrect!")
 
-            # print("u_form is invalid")
-
-        return render(request, self.template_name, {'u_form': u_form})
+        return redirect("users:profile")
 
     def get_context_data(self, *args, **kwargs):
 

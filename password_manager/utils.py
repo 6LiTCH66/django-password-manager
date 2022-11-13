@@ -49,7 +49,7 @@ def decrypt(encrypted_dict, user_master_password):
     cipher = AES.new(private_key, AES.MODE_GCM, nonce=nonce)
 
     decrypted = cipher.decrypt_and_verify(cipher_text, tag)
-    
+
     return decrypted
 
 
