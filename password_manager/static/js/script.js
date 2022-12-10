@@ -1,15 +1,14 @@
 window.addEventListener('load', function () {
 
-    const exampleModal33 = document.getElementById('exampleModal33'); // modal from prifle
-    if (exampleModal33) {
-        exampleModal33.addEventListener('show.mdb.modal', (e) => {
-            // Button that triggered the modal
+    const profileModal = document.getElementById('profileModal'); // modal from profile
+    if (profileModal) {
+        profileModal.addEventListener('show.mdb.modal', (e) => {
             const button = e.relatedTarget;
-            // Extract info from data-mdb-* attributes
             const password_id = button.getAttribute('data-mdb-profile-password-id');
             document.querySelector("#yes-btn").href = password_id + "/delete"
         })
     }
+
 
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -25,7 +24,6 @@ window.addEventListener('load', function () {
 
 
     $('.upload-btn').on('click', function () {
-        // console.log($('#id_image'));
         $('#id_image').trigger('click');
         $('#id_image').change(function () {
             readURL(this)
@@ -34,11 +32,11 @@ window.addEventListener('load', function () {
 
 
     $(document).ready(function () {
-        $("#exampleModal6").modal('show'); // success message modal
-        $("#exampleModal7").modal('show'); // error message modal
+        $("#successModal").modal('show'); // success message modal
+        $("#errorModal").modal('show'); // error message modal
 
         $('.modal-backdrop').remove();
-        if ($('#exampleModal7').hasClass('show') || $('#exampleModal6').hasClass('show')) {
+        if ($('#errorModal').hasClass('show') || $('#successModal').hasClass('show')) {
             $("body").removeAttr("class")
             $("body").removeAttr("style")
         }
@@ -48,8 +46,8 @@ window.addEventListener('load', function () {
 
     setTimeout(() => {
         $(document).ready(function () {
-            $("#exampleModal6").modal('hide');
-            $("#exampleModal7").modal('hide');
+            $("#successModal").modal('hide');
+            $("#errorModal").modal('hide');
         });
     }, 3000)
 
@@ -58,8 +56,6 @@ window.addEventListener('load', function () {
     if (allGs) {
         Array.from(allGs).forEach(element => {
             if (element.parentElement) {
-
-                // console.log(element.parentElement.nextSibling.nextSibling.nextSibling);
 
                 if (element.parentElement.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling) {
                     element.parentElement.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.style.display = "flex"
@@ -77,18 +73,15 @@ window.addEventListener('load', function () {
         });
     }
 
-    const exampleModal = document.getElementById('exampleModal2'); // show, update, delete modal
-    // if exampleModal добавить проверку
-    if (exampleModal) {
+    const editModal = document.getElementById('editModal'); // show, update, delete modal
+    if (editModal) {
 
 
-        exampleModal.addEventListener('show.mdb.modal', (e) => {
-            exampleModal.querySelector(".error-message").style.visibility = "hidden"
+        editModal.addEventListener('show.mdb.modal', (e) => {
+            editModal.querySelector(".error-message").style.visibility = "hidden"
 
-            // Button that triggered the modal
             const button = e.relatedTarget;
 
-            // Extract info from data-mdb-* attributes
             const password_id = button.getAttribute('data-mdb-pass_id'); // getting password id
 
             const password_login = button.getAttribute('data-mdb-pass_login'); // getting password login
@@ -96,7 +89,7 @@ window.addEventListener('load', function () {
             const password_icon = button.getAttribute('data-mdb-pass_icon'); // getting password icon
             const password_website = button.getAttribute('data-mdb-website'); // getting password website
 
-            users_login = exampleModal.querySelectorAll('#user_login')
+            users_login = editModal.querySelectorAll('#user_login')
 
             users_login.forEach(
                 function (login) {
@@ -104,18 +97,17 @@ window.addEventListener('load', function () {
                 }
             )
 
-            // exampleModal.querySelector("#user_login").value = password_login // setting login to login input
-            exampleModal.querySelector("#user_title").value = password_title
-            exampleModal.querySelector("#user_website").value = password_website
+            editModal.querySelector("#user_title").value = password_title
+            editModal.querySelector("#user_website").value = password_website
 
 
             if (password_title.length > 18) {
                 password_title = password_title.substring(0, 18) + "..."
             }
 
-            exampleModal.querySelector("#exampleModalLabel").textContent = password_title.substring(0, 21)
+            editModal.querySelector("#editModalLabel").textContent = password_title.substring(0, 21)
 
-            exampleModal.querySelector("#exampleModalLabel")
+            editModal.querySelector("#editModalLabel")
                 .insertAdjacentHTML('afterbegin',
                     `<div class="icon-container me-2" style="display: none;">
             <div class="iconImage">
@@ -124,14 +116,14 @@ window.addEventListener('load', function () {
         </div>`
                 )
 
-            exampleModal.querySelector("#exampleModalLabel")
+            editModal.querySelector("#editModalLabel")
                 .insertAdjacentHTML('afterbegin', `<i class="fa-brands fa-${password_icon} fa-2xl text-light me-2" style="color: #4547e2;"></i>`)
 
 
             setTimeout(() => {
-                $('#exampleModalLabel').ready(function () {
+                $('#editModalLabel').ready(function () {
 
-                    var allGs_modal = exampleModal.getElementsByTagName('g');
+                    var allGs_modal = editModal.getElementsByTagName('g');
 
                     if (allGs_modal) {
                         Array.from(allGs_modal).forEach(element => {
@@ -147,12 +139,12 @@ window.addEventListener('load', function () {
                 });
             }, 1000)
 
-            
-            exampleModal.querySelector('#password_id').value = password_id // setting hidden input to password's id
 
-            exampleModal.querySelector('#user_password').value = "*********" // if modal form is opened clear 'Password' input
-            exampleModal.querySelector('#user_password').type = 'password' // and set password type back
-            exampleModal.querySelector('#user_master_password').value = "" // clear Master password input from previous password
+            editModal.querySelector('#password_id').value = password_id // setting hidden input to password's id
+
+            editModal.querySelector('#user_password').value = "*********" // if modal form is opened clear 'Password' input
+            editModal.querySelector('#user_password').type = 'password' // and set password type back
+            editModal.querySelector('#user_master_password').value = "" // clear Master password input from previous password
 
             document.querySelector("#yes-btn").href = password_id + "/delete" // setting url for current password to delete
             document.querySelector("#myForm1").action = password_id + "/update/" // setting action for form to update password

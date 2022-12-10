@@ -1,11 +1,11 @@
 {% extends "password_manager/base.html" %}
 {% block content %}
 
-    <div class="modal fade" id="exampleModal33" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" style="color: white;" id="exampleModalLabel">Are you sure you want to
+                    <h5 class="modal-title" style="color: white;" id="profileModalLabel">Are you sure you want to
                         delete this Password?
                     </h5>
 
@@ -213,7 +213,7 @@
                         <div class="card mb-2" style="background-color: #1d1c24;">
                             <div class="d-flex justify-content-end">
                                 <button type="button" class="btn p-0 m-0" style="background-color: transparent;"
-                                        data-mdb-toggle="modal" id="delete-pass-btn" data-mdb-target="#exampleModal33"
+                                        data-mdb-toggle="modal" id="delete-pass-btn" data-mdb-target="#profileModal"
                                         data-mdb-profile-password-id="{{ password.pk }}">
                                     <i class="fa-solid fa-xmark fa-2x"></i>
                                 </button>
