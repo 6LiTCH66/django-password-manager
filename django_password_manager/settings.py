@@ -147,6 +147,7 @@ LOGIN_REDIRECT_URL = '/user/signup'
 # to heroku Debug = False
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# django.contrib.staticfiles.storage.ManifestStaticFilesStorage before
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 django_on_heroku.settings(locals())
