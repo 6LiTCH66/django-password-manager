@@ -278,7 +278,7 @@ div.icon-container {
     justify-content: center;
 }
 
-h4#exampleModalLabel {
+h4#createModalLabel, h4#editModalLabel {
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -406,12 +406,12 @@ div.modal-header.error-message {
     color: white;
 }
 
-div#exampleModal7 {
+div#errorModal {
     height: 130px;
     overflow-y: hidden;
 }
 
-div#exampleModal6 {
+div#successModal {
     height: 100px;
     overflow-y: hidden;
 }
