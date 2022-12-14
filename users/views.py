@@ -13,6 +13,7 @@ from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
 from Cryptodome.Protocol.KDF import PBKDF2
 from password_manager.utils import derive_key
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class CustomLoginView(LoginView):
@@ -176,12 +177,18 @@ class SetGlobalMasterPassword(generic.View):
                 old_salt = PrivateKey.objects.get(user__id=user_id).salt
                 old_private_key = derive_key(primary_master_password, old_salt)
 
-                key_obj = PrivateKey.objects.get(private_key=old_private_key, user__id=user_id)
-                key_obj.private_key = new_private_key
-                key_obj.salt = new_salt
-                key_obj.save()
+                is_private_key_exists = PrivateKey.objects.filter(private_key=old_private_key).exists()
 
-                messages.success(request, "Your Master Password has been changed successfully!")
+                if is_private_key_exists:
+                    key_obj = PrivateKey.objects.get(private_key=old_private_key, user__id=user_id)
+                    key_obj.private_key = new_private_key
+                    key_obj.salt = new_salt
+                    key_obj.save()
+
+                    messages.success(request, "Your Master Password has been changed successfully!")
+
+                else:
+                    messages.error(request, "Cannot update Global Master Password")
             else:
                 messages.error(request, "Cannot update Global Master Password")
 

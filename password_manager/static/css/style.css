@@ -412,7 +412,7 @@ div#errorModal {
 }
 
 div#successModal {
-    height: 100px;
+    height: 100%;
     overflow-y: hidden;
 }
 
