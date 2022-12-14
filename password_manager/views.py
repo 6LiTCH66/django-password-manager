@@ -167,26 +167,23 @@ class AddNewPassword(generic.View):
         form = AddPasswordForm(request.POST)
 
         if form.is_valid():
-            # print(get_domain_name(request.POST.get("website_address")))
 
             password_object = form.save(commit=False)
             password_object.user = request.user
+            print(password_object)
 
             password = request.POST.get("password")
 
             is_private_key_exists = PrivateKey.objects.filter(user=request.user).exists()
 
-            # print(PrivateKey.objects.get(user=request.user).private_key)
-
-            salt = PrivateKey.objects.get(user=request.user).salt
+            salt = None
 
             if not request.POST.get("master_password") and is_private_key_exists:
                 master_password = PrivateKey.objects.get(user=request.user).private_key
+                salt = PrivateKey.objects.get(user=request.user).salt
 
-                # print(master_password)
             else:
                 master_password = request.POST.get("master_password")
-                # print("with master key")
 
             password_object.encrypted_password = encrypt(
                 master_password, password, salt)
