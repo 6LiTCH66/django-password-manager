@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import django_on_heroku
-import dj_database_url
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,8 +25,8 @@ SECRET_KEY = 'django-insecure-(4#_#y2m@0r!)y=rl8!v@xv79w_^2l6p$bt9oc2t7eo--ha^3*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://web-production-a601.up.railway.app']
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://web-production-8b9c.up.railway.app']
 
 # Application definition
 INSTALLED_APPS = [
@@ -130,7 +127,7 @@ if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
@@ -151,4 +148,4 @@ LOGIN_REDIRECT_URL = '/user/signup'
 # django.contrib.staticfiles.storage.ManifestStaticFilesStorage before
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-django_on_heroku.settings(locals())
+# django_on_heroku.settings(locals())
